@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-primary: 16 35 63; /* #10233F */
+    --brand-gold: 200 164 93; /* #C8A45D */
+    --brand-charcoal: 34 34 34; /* #222222 */
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply text-brand-charcoal bg-white selection:bg-brand-gold/30 antialiased overflow-x-hidden;
+    font-family: var(--font-score-dream), var(--font-inter), sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight break-keep text-brand-primary;
+  }
+
+  p {
+    @apply leading-relaxed break-keep;
+  }
+
+  a, button {
+    @apply transition-all duration-300 ease-in-out;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-py {
+    @apply py-16 md:py-24;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-4 bg-brand-gold text-white font-bold rounded-xl transition-all hover:bg-brand-deep hover:shadow-lg active:scale-95;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-8 py-4 border-2 border-brand-gold text-brand-gold font-bold rounded-xl transition-all hover:bg-brand-gold hover:text-white active:scale-95;
+  }
+
+  .card-premium {
+    @apply bg-white p-8 rounded-3xl border border-brand-line hover:border-brand-gold hover:shadow-xl transition-all duration-300;
+  }
+
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 rounded-3xl;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-brand-ivory;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-brand-line rounded-full hover:bg-brand-muted transition-colors;
+}
