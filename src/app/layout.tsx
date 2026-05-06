@@ -24,6 +24,7 @@ const sCoreDream = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://gongjeong-loss.com'),
   title: "공정손해사정 | 서울·경기 교통사고·산재·보험금 분쟁 전문",
   description: "정당한 보상을 위한 객관적 검토, 공정손해사정입니다. 교통사고 합의금, 산재 보상금, 보험금 부지급 등 서울·경기 전 지역 무료 상담.",
   keywords: "손해사정사, 교통사고 손해사정, 산재 손해사정, 보험금 분쟁, 서울 손해사정사, 경기 손해사정사",
