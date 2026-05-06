@@ -1,3 +1,4 @@
+import React, { Suspense } from 'react';
 import type { Metadata } from "next";
 import localFont from 'next/font/local';
 import { Inter } from "next/font/google";
@@ -62,7 +63,9 @@ export default function RootLayout({
       <body className={`${inter.variable} ${sCoreDream.variable} font-sans`}>
         <Header />
         <main>{children}</main>
-        <Footer />
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
         <CTAButton variant="sticky" />
       </body>
     </html>

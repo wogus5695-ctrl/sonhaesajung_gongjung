@@ -378,7 +378,7 @@ export default function MainPageContent({ k }: { k?: string }) {
             </div>
             <div className="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-2xl text-brand-primary">
               <h3 className="text-2xl font-black mb-8 text-center">{hasKeyword ? `${keyword} 무료 검토 신청` : "무료 검토 신청서"}</h3>
-              <ContactForm />
+              <ContactForm keyword={keyword} />
               <p className="mt-8 text-[10px] text-brand-muted leading-relaxed text-center break-keep">
                 공정손해사정은 손해액 산정, 보험금 검토, 사고자료 및 의학자료 분석을 중심으로 상담을 진행합니다. 
                 법률 대리, 소송 대리, 형사사건 대응은 변호사 업무에 해당할 수 있으며, 필요한 경우 관련 전문가와의 협업을 안내할 수 있습니다.

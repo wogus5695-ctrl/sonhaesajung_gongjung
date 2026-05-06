@@ -1,12 +1,10 @@
 "use client";
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
-import { useSearchParams } from 'next/navigation';
 import { Phone } from 'lucide-react';
 
-export default function ContactForm() {
-  const searchParams = useSearchParams();
-  const currentKeyword = searchParams.get('k') || '';
+export default function ContactForm({ keyword }: { keyword?: string }) {
+  const currentKeyword = keyword || '';
 
   const [formData, setFormData] = useState({
     name: '',
