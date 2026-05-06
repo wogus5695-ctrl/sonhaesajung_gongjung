@@ -1,3 +1,4 @@
+// Forced redeploy to ensure routing fix is applied
 import React, { Suspense } from 'react';
 import type { Metadata } from "next";
 import localFont from 'next/font/local';
