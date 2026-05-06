@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://gongjeong-loss.com'; // Placeholder
+  const baseUrl = 'https://www.gongjungsh.co.kr';
   
   return {
     rules: {

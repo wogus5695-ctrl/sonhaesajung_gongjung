@@ -10,6 +10,7 @@ export function generateMetadata({ searchParams }: PageProps): Metadata {
   const k = searchParams.k;
   const keyword = k ? k.replace(/-/g, ' ').replace(/[<>]/g, '') : "";
   
+  const baseUrl = "https://www.gongjungsh.co.kr";
   const baseTitle = "공정손해사정 | 서울·경기 교통사고 산재 보험금 손해사정 상담";
   const baseDesc = "서울·경기 교통사고 합의금, 산재 불승인, 장해등급, 추가상병, 폐암 산재, 보험금 부지급 문제를 사고자료와 의학자료 기준으로 검토하는 손해사정 상담.";
 
@@ -18,14 +19,19 @@ export function generateMetadata({ searchParams }: PageProps): Metadata {
     ? `${keyword} 관련 합의금, 손해액 산정, 보험금 분쟁 문제를 사고자료와 의학자료를 기준으로 정밀 검토해드립니다.` 
     : baseDesc;
 
+  const canonicalUrl = k ? `${baseUrl}/?k=${encodeURIComponent(k)}` : baseUrl;
+
   return {
     title,
     description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title,
       description,
       type: "website",
-      url: "https://gongjeong-loss.com",
+      url: canonicalUrl,
       images: [
         {
           url: "/og-image.png",
@@ -45,13 +51,15 @@ export function generateMetadata({ searchParams }: PageProps): Metadata {
 }
 
 export default function Page({ searchParams }: PageProps) {
+  const baseUrl = "https://www.gongjungsh.co.kr";
+  
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "공정손해사정",
-    "image": "https://gongjeong-loss.com/og-image.png",
-    "@id": "https://gongjeong-loss.com",
-    "url": "https://gongjeong-loss.com",
+    "image": `${baseUrl}/og-image.png`,
+    "@id": baseUrl,
+    "url": baseUrl,
     "telephone": "010-4861-3226",
     "address": {
       "@type": "PostalAddress",
