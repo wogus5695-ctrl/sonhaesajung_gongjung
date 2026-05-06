@@ -106,25 +106,16 @@ export default function MainPageContent({ k }: { k?: string }) {
               </span>
             </div>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-8 break-keep text-white">
-              {hasKeyword ? (
-                <>
-                  <span className="block mb-3 md:mb-5 text-brand-gold">{keyword}</span>
-                  <span className="block text-white">정당한 보상의 기준</span>
-                </>
-              ) : (
-                <>
-                  <span className="block mb-3 md:mb-5 text-white">보험사 제시 합의금,</span>
-                  <span className="block mb-3 md:mb-5">
-                    <span className="text-brand-gold">객관적 검토</span> <span className="text-white">없이는</span>
-                  </span>
-                  <span className="block text-white">서명하지 마십시오.</span>
-                </>
-              )}
+              <span className="block mb-3 md:mb-5 text-white">보험사 제시 합의금,</span>
+              <span className="block mb-3 md:mb-5">
+                <span className="text-brand-gold">객관적 검토</span> <span className="text-white">없이는</span>
+              </span>
+              <span className="block text-white">서명하지 마십시오.</span>
             </h1>
-            <p 
-              className="text-lg md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl whitespace-pre-line [&_u]:text-white [&_u]:decoration-brand-gold [&_u]:decoration-2 [&_u]:underline-offset-8"
-              dangerouslySetInnerHTML={{ __html: dki.heroSubtitle }}
-            />
+            <p className="text-lg md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl whitespace-pre-line">
+              보험금 산정 관련 손해액과 보험사의 산정 문제를 {"\n"}
+              <span className="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">사고자료와 진단자료를 기준으로 검토</span>합니다.
+            </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-16">
               <a href="#contact" className="btn-primary text-xl px-10 py-5 text-center shadow-2xl shadow-brand-gold/20 active:scale-95 transition-transform">
@@ -386,7 +377,7 @@ export default function MainPageContent({ k }: { k?: string }) {
               </div>
             </div>
             <div className="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-2xl text-brand-primary">
-              <h3 className="text-2xl font-black mb-8 text-center">{hasKeyword ? `${keyword} 무료 검토 신청` : "무료 검토 신청서"}</h3>
+              <h3 className="text-2xl font-black mb-8 text-center">무료 검토 신청서</h3>
               <ContactForm keyword={keyword} />
               <p className="mt-8 text-[10px] text-brand-muted leading-relaxed text-center break-keep">
                 공정손해사정은 손해액 산정, 보험금 검토, 사고자료 및 의학자료 분석을 중심으로 상담을 진행합니다. 
