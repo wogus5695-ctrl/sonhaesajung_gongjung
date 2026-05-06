@@ -31,7 +31,9 @@ export const metadata: Metadata = {
   keywords: "손해사정사, 교통사고 손해사정, 산재 손해사정, 보험금 분쟁, 서울 손해사정사, 경기 손해사정사",
   verification: {
     google: "XV9Nsv1HRUu4LrnGHrzDvxlIGDMdia0VhkHf96ODAmY",
-    naver: "759504786be475af591cc09a5a3aaade8134aa99",
+    other: {
+      "naver-site-verification": "759504786be475af591cc09a5a3aaade8134aa99",
+    },
   },
   openGraph: {
     title: "공정손해사정 | 정당한 보상의 기준",
