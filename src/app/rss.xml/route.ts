@@ -7,7 +7,7 @@ export async function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>로로손해사정</title>
+    <title>공정손해사정</title>
     <link>${baseUrl}</link>
     <description>서울·경기 교통사고·산재·보험금 분쟁 전문 손해사정 상담</description>
     <language>ko-kr</language>
@@ -15,7 +15,7 @@ export async function GET() {
     <lastBuildDate>${now}</lastBuildDate>
     <atom:link href="${baseUrl}/rss.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>로로손해사정 | 정당한 보상의 기준</title>
+      <title>공정손해사정 | 정당한 보상의 기준</title>
       <link>${baseUrl}</link>
       <description>보험사 제시 합의금, 객관적 검토 없이는 서명하지 마십시오. 교통사고, 산재, 보험금 부지급 전문 상담.</description>
       <pubDate>${now}</pubDate>

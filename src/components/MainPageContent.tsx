@@ -56,7 +56,7 @@ const processSteps = [
 
 const SectionTitle = ({ title, sub }: { title: string, sub?: string }) => (
   <div className="mb-12 md:mb-16 text-center">
-    <div className="inline-block px-4 py-1.5 bg-brand-gold/10 text-brand-gold text-sm font-bold rounded-full mb-4">로로손해사정</div>
+    <div className="inline-block px-4 py-1.5 bg-brand-gold/10 text-brand-gold text-sm font-bold rounded-full mb-4">공정손해사정</div>
     <h2 className="text-3xl md:text-5xl font-black text-brand-primary mb-4 break-keep leading-[1.4] md:leading-[1.4]">{title}</h2>
     {sub && <p className="text-brand-muted text-lg md:text-xl break-keep max-w-3xl mx-auto">{sub}</p>}
   </div>
@@ -363,7 +363,7 @@ export default function MainPageContent({ k }: { k?: string }) {
                 지나가고 있습니다.
               </h2>
               <p className="text-white/60 text-lg md:text-xl mb-12 leading-relaxed break-keep">
-                복잡한 자료 준비와 전문적인 보험사 대응, 로로손해사정이 의뢰인의 든든한 파트너가 되어드리겠습니다.
+                복잡한 자료 준비와 전문적인 보험사 대응, 공정손해사정이 의뢰인의 든든한 파트너가 되어드리겠습니다.
               </p>
               <div className="grid grid-cols-2 gap-4">
                  <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
@@ -380,7 +380,7 @@ export default function MainPageContent({ k }: { k?: string }) {
               <h3 className="text-2xl font-black mb-8 text-center">무료 검토 신청서</h3>
               <ContactForm keyword={keyword} />
               <p className="mt-8 text-[10px] text-brand-muted leading-relaxed text-center break-keep">
-                로로손해사정은 손해액 산정, 보험금 검토, 사고자료 및 의학자료 분석을 중심으로 상담을 진행합니다. 
+                공정손해사정은 손해액 산정, 보험금 검토, 사고자료 및 의학자료 분석을 중심으로 상담을 진행합니다. 
                 법률 대리, 소송 대리, 형사사건 대응은 변호사 업무에 해당할 수 있으며, 필요한 경우 관련 전문가와의 협업을 안내할 수 있습니다.
               </p>
             </div>

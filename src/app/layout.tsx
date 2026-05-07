@@ -26,8 +26,8 @@ const sCoreDream = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.gongjungsh.co.kr'),
-  title: "로로손해사정 | 서울·경기 교통사고·산재·보험금 분쟁 전문",
-  description: "정당한 보상을 위한 객관적 검토, 로로손해사정입니다. 교통사고 합의금, 산재 보상금, 보험금 부지급 등 서울·경기 전 지역 무료 상담.",
+  title: "공정손해사정 | 서울·경기 교통사고·산재·보험금 분쟁 전문",
+  description: "정당한 보상을 위한 객관적 검토, 공정손해사정입니다. 교통사고 합의금, 산재 보상금, 보험금 부지급 등 서울·경기 전 지역 무료 상담.",
   keywords: "손해사정사, 교통사고 손해사정, 산재 손해사정, 보험금 분쟁, 서울 손해사정사, 경기 손해사정사",
   verification: {
     google: "XV9Nsv1HRUu4LrnGHrzDvxlIGDMdia0VhkHf96ODAmY",
@@ -36,23 +36,23 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "로로손해사정 | 정당한 보상의 기준",
+    title: "공정손해사정 | 정당한 보상의 기준",
     description: "보험사 출신 전문가의 객관적 검토로 의뢰인의 권리를 지킵니다.",
     type: "website",
     locale: "ko_KR",
-    siteName: "로로손해사정",
+    siteName: "공정손해사정",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "로로손해사정 전문가의 서류 검토 및 상담",
+        alt: "공정손해사정 전문가의 서류 검토 및 상담",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "로로손해사정",
+    title: "공정손해사정",
     description: "보험사 출신 전문가의 객관적 검토",
     images: ["/og-image.png"],
   },

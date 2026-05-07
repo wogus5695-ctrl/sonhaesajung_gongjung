@@ -42,7 +42,7 @@ export default function CaseSection({ keyword }: { keyword?: string }) {
             <p className="text-white/70 text-lg md:text-xl leading-relaxed break-keep">
               교통사고·산재·보험금 분쟁은 <br />
               사고 경위, 의무기록, 장해 여부, 약관 적용에 따라 검토 방향이 달라집니다.<br />
-              <strong className="text-brand-gold font-black">로로손해사정</strong>은 각 사건의 자료를 기준으로 손해액과 보험금 산정 쟁점을 확인합니다.
+              <strong className="text-brand-gold font-black">공정손해사정</strong>은 각 사건의 자료를 기준으로 손해액과 보험금 산정 쟁점을 확인합니다.
             </p>
           </div>
           
@@ -113,7 +113,7 @@ export default function CaseSection({ keyword }: { keyword?: string }) {
                 <div className="mt-auto bg-brand-gold/10 rounded-2xl p-6 border border-brand-gold/20 relative overflow-hidden group-hover:bg-brand-gold/20 transition-colors duration-300">
                   <div className="flex items-center gap-2 mb-2">
                     <CheckCircle2 className="w-5 h-5 text-brand-gold" />
-                    <p className="text-sm font-black text-brand-primary">로로손해사정의 솔루션</p>
+                    <p className="text-sm font-black text-brand-primary">공정손해사정의 솔루션</p>
                   </div>
                   <p className="text-sm text-brand-primary/80 leading-relaxed break-keep font-medium">
                     {item.direction}
