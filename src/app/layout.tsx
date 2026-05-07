@@ -56,6 +56,9 @@ export const metadata: Metadata = {
     description: "보험사 출신 전문가의 객관적 검토",
     images: ["/og-image.png"],
   },
+  icons: {
+    icon: "/favicon.ico?v=2",
+    apple: "/apple-icon.png?v=2",
   },
 };
 
