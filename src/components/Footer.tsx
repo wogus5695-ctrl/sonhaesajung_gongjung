@@ -16,9 +16,9 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 bg-white/10 rounded flex items-center justify-center">
-                <span className="text-brand-gold font-black text-sm">公</span>
+                <span className="text-brand-gold font-black text-sm">路</span>
               </div>
-              <span className="text-xl font-black text-white tracking-tighter">공정<span className="text-brand-gold">손해사정</span></span>
+              <span className="text-xl font-black text-white tracking-tighter">로로<span className="text-brand-gold">손해사정</span></span>
             </Link>
             <p className="text-white/40 text-xs mb-6 font-bold tracking-tight">교통사고·산재·보험금 손해사정 상담</p>
             <p className="max-w-md mb-8 break-keep text-sm leading-relaxed">
@@ -27,7 +27,7 @@ export default function Footer() {
             </p>
             <div className="bg-white/5 p-5 rounded-xl border border-white/10 max-w-md">
               <p className="text-[11px] text-white/50 leading-relaxed break-keep">
-                공정손해사정은 {keyword ? `${keyword} 관련 ` : ""}손해액 산정, 보험금 검토, 사고자료 및 의학자료 분석을 중심으로 상담을 진행합니다. 
+                로로손해사정은 {keyword ? `${keyword} 관련 ` : ""}손해액 산정, 보험금 검토, 사고자료 및 의학자료 분석을 중심으로 상담을 진행합니다. 
                 법률 대리, 소송 대리, 형사사건 대응은 변호사 업무에 해당할 수 있으며, 필요한 경우 관련 전문가와의 협업을 안내할 수 있습니다.
               </p>
             </div>
@@ -47,8 +47,8 @@ export default function Footer() {
 
         <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between gap-6 text-xs">
           <div className="space-y-2">
-            <p>© {currentYear} 공정손해사정. All Rights Reserved.</p>
-            <p>상호명: 공정손해사정 | 대표자: 이영민 | 사업자등록번호: 899-10-02969</p>
+            <p>© {currentYear} 로로손해사정. All Rights Reserved.</p>
+            <p>상호명: 로로손해사정 | 대표자: 이영민 | 사업자등록번호: 899-10-02969</p>
             <p>주소: 경기도 고양시 덕양구 향기로 30</p>
           </div>
           <div className="flex gap-6 text-white/40">

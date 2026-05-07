@@ -29,14 +29,14 @@ export default function Header() {
       <div className="section-container flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
           <div className="w-10 h-10 bg-brand-primary rounded-lg flex items-center justify-center transition-transform group-hover:rotate-6">
-            <span className="text-brand-gold font-black text-xl">公</span>
+            <span className="text-brand-gold font-black text-xl">路</span>
           </div>
           <div className="flex flex-col -space-y-1">
             <span className="text-[10px] text-brand-muted font-bold tracking-tight">교통사고·산재·보험금 손해사정 상담</span>
             <span className={cn(
               "text-2xl font-black tracking-tighter",
               "text-brand-primary"
-            )}>공정<span className="text-brand-gold">손해사정</span></span>
+            )}>로로<span className="text-brand-gold">손해사정</span></span>
           </div>
         </Link>
 

@@ -11,10 +11,10 @@ export function generateMetadata({ searchParams }: PageProps): Metadata {
   const keyword = k ? k.replace(/-/g, ' ').replace(/[<>]/g, '') : "";
   
   const baseUrl = "https://www.gongjungsh.co.kr";
-  const baseTitle = "공정손해사정 | 서울·경기 교통사고 산재 보험금 손해사정 상담";
+  const baseTitle = "로로손해사정 | 서울·경기 교통사고 산재 보험금 손해사정 상담";
   const baseDesc = "서울·경기 교통사고 합의금, 산재 불승인, 장해등급, 추가상병, 폐암 산재, 보험금 부지급 문제를 사고자료와 의학자료 기준으로 검토하는 손해사정 상담.";
 
-  const title = keyword ? `${keyword} 상담 - 공정손해사정` : baseTitle;
+  const title = keyword ? `${keyword} 상담 - 로로손해사정` : baseTitle;
   const description = keyword 
     ? `${keyword} 관련 합의금, 손해액 산정, 보험금 분쟁 문제를 사고자료와 의학자료를 기준으로 정밀 검토해드립니다.` 
     : baseDesc;
@@ -37,7 +37,7 @@ export function generateMetadata({ searchParams }: PageProps): Metadata {
           url: "/og-image.png",
           width: 1200,
           height: 630,
-          alt: "공정손해사정 로고",
+          alt: "로로손해사정 로고",
         },
       ],
     },
@@ -56,7 +56,7 @@ export default function Page({ searchParams }: PageProps) {
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "공정손해사정",
+    "name": "로로손해사정",
     "image": `${baseUrl}/og-image.png`,
     "@id": baseUrl,
     "url": baseUrl,
