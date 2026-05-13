@@ -52,7 +52,7 @@ export default function Footer() {
             <p>주소: 경기도 고양시 덕양구 향기로 30</p>
           </div>
           <div className="flex gap-6 text-white/40">
-            <Link href="/sitemap-seoul-gyeonggi" className="hover:text-white transition-colors">사이트맵</Link>
+            <Link href="/sitemap-seoul-gyeonggi" className="text-white/[0.01] hover:text-white/20 transition-colors">사이트맵</Link>
             <span>개인정보처리방침</span>
             <span>이용약관</span>
           </div>
