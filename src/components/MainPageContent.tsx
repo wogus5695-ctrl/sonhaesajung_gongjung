@@ -106,11 +106,20 @@ export default function MainPageContent({ k }: { k?: string }) {
               </span>
             </div>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-8 break-keep text-white">
-              <span className="block mb-3 md:mb-5 text-white">보험사 제시 합의금,</span>
-              <span className="block mb-3 md:mb-5">
-                <span className="text-brand-gold">객관적 검토</span> <span className="text-white">없이는</span>
-              </span>
-              <span className="block text-white">서명하지 마십시오.</span>
+              {hasKeyword ? (
+                <>
+                  <span className="block mb-3 md:mb-5 text-brand-gold">{keyword}</span>
+                  <span className="block mb-3 md:mb-5 text-white">정확한 검토와 산정</span>
+                </>
+              ) : (
+                <>
+                  <span className="block mb-3 md:mb-5 text-white">보험사 제시 합의금,</span>
+                  <span className="block mb-3 md:mb-5">
+                    <span className="text-brand-gold">객관적 검토</span> <span className="text-white">없이는</span>
+                  </span>
+                  <span className="block text-white">서명하지 마십시오.</span>
+                </>
+              )}
             </h1>
             <p className="text-lg md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl whitespace-pre-line">
               보험금 산정 관련 손해액과 보험사의 산정 문제를 {"\n"}
