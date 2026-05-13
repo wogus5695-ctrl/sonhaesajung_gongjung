@@ -13,11 +13,17 @@ export default function SitemapContent() {
 
   const categories: (KeywordCategory | "전체")[] = [
     "전체", 
-    "손해사정사", 
-    "교통사고", 
-    "보험금 분쟁", 
-    "후유장해", 
-    "산재", 
+    "손해사정사 비용·선임",
+    "교통사고 합의 전후",
+    "교통사고 부상별 합의금",
+    "후유장해 진단·평가",
+    "보험금 부지급 대응",
+    "고지의무·계약해지",
+    "암·진단비 보험금",
+    "실손·수술비·입원비",
+    "산재 신청·치료종결",
+    "산재 질환·직업병",
+    "배달·운송 산재",
     "지역 상담"
   ];
 
@@ -51,17 +57,17 @@ export default function SitemapContent() {
       <section className="pt-32 pb-16 bg-brand-primary text-white">
         <div className="section-container">
           <h1 className="text-3xl md:text-5xl font-black mb-8 break-keep leading-tight">
-            교통사고·산재·보험금 손해사정 상담 키워드 안내
+            손해사정 키워드 허브: 상황별 상담 안내
           </h1>
           <p className="text-white/60 text-lg md:text-xl leading-relaxed break-keep max-w-4xl mb-10">
-            공정손해사정은 교통사고 합의금, 후유장해 보험금, 보험금 부지급, 산재 불승인, 산재 장해등급 등 손해사정 상담이 필요한 문제상황을 자료 기준으로 검토합니다. 아래 키워드를 선택하면 해당 상황에 맞는 상담 안내 페이지로 이동합니다.
+            공정손해사정은 교통사고, 산재, 보험금 분쟁 등 고객님이 처한 구체적인 문제 상황을 자료와 원칙에 근거하여 면밀히 검토합니다. 아래 카테고리에서 본인의 상황과 일치하는 키워드를 확인해 보세요.
           </p>
           
           <div className="relative max-w-2xl">
             <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-white/40 w-5 h-5" />
             <input 
               type="text" 
-              placeholder="궁금하신 키워드나 상황을 검색해보세요 (예: 합의금, 불승인)"
+              placeholder="궁금하신 상황이나 부상명을 검색해보세요 (예: 골절, 부지급)"
               className="w-full bg-white/10 border border-white/20 rounded-2xl py-4 pl-14 pr-6 focus:outline-none focus:bg-white/20 transition-all text-white placeholder:text-white/30"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -75,7 +81,7 @@ export default function SitemapContent() {
         <div className="section-container overflow-x-auto no-scrollbar">
           <div className="flex items-center gap-2 min-w-max pb-2 md:pb-0">
             <span className="flex items-center gap-2 text-sm font-bold text-brand-primary mr-4 bg-brand-ivory px-3 py-1.5 rounded-lg shrink-0">
-              <Filter className="w-4 h-4" /> 카테고리
+              <Filter className="w-4 h-4" /> 상황 분류
             </span>
             {categories.map(cat => (
               <button
@@ -151,7 +157,7 @@ export default function SitemapContent() {
             내 상황에 맞는 손해사정 검토가 필요하다면
           </h2>
           <p className="text-brand-muted text-lg md:text-xl mb-12 max-w-2xl mx-auto break-keep">
-            교통사고 합의금, 보험금 부지급, 산재 불승인, 장해등급 문제는 사고자료와 의무기록을 기준으로 확인해야 합니다.
+            교통사고 합의금, 보험금 부지급, 산재 불승인 문제는 사고 자료와 의학적 소견을 바탕으로 객관적으로 분석해야 합니다.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
