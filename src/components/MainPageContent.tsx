@@ -108,8 +108,7 @@ export default function MainPageContent({ k }: { k?: string }) {
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-8 break-keep text-white">
               {hasKeyword ? (
                 <>
-                  <span className="block mb-3 md:mb-5 text-brand-gold">{keyword}</span>
-                  <span className="block mb-3 md:mb-5 text-white">정확한 검토와 산정</span>
+                  <span className="block mb-3 md:mb-5 text-brand-gold leading-tight">{dki.heroTitle}</span>
                 </>
               ) : (
                 <>
@@ -122,13 +121,17 @@ export default function MainPageContent({ k }: { k?: string }) {
               )}
             </h1>
             <p className="text-lg md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl whitespace-pre-line">
-              보험금 산정 관련 손해액과 보험사의 산정 문제를 {"\n"}
-              <span className="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">사고자료와 진단자료를 기준으로 검토</span>합니다.
+              {hasKeyword ? dki.heroSubtitle : (
+                <>
+                  보험금 산정 관련 손해액과 보험사의 산정 문제를 {"\n"}
+                  <span className="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">사고자료와 진단자료를 기준으로 검토</span>합니다.
+                </>
+              )}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-16">
               <a href="#contact" className="btn-primary text-xl px-10 py-5 text-center shadow-2xl shadow-brand-gold/20 active:scale-95 transition-transform">
-                사전 검토 상담
+                {hasKeyword ? dki.ctaText : "사전 검토 상담"}
               </a>
               <a href="tel:010-4861-3226" className="flex items-center justify-center gap-3 bg-white/10 backdrop-blur-md text-white border border-white/20 px-10 py-5 rounded-xl font-bold text-xl hover:bg-white/20 active:scale-95 transition-all">
                 <Phone className="w-6 h-6" /> 빠른 전화 상담

@@ -2,22 +2,25 @@ import { Metadata } from "next";
 import MainPageContent from "@/components/MainPageContent";
 import { commonFaqs } from "@/lib/faqData";
 
+import { classifyKeyword, getDKIContent } from "@/lib/dkiUtils";
+
 interface PageProps {
   searchParams: { k?: string };
 }
 
 export function generateMetadata({ searchParams }: PageProps): Metadata {
   const k = searchParams.k;
-  const keyword = k ? k.replace(/-/g, ' ').replace(/[<>]/g, '') : "";
+  const keyword = k ? k.replace(/-/g, ' ').replace(/[<>]/g, '').trim() : "";
   
   const baseUrl = "https://www.gongjungsh.co.kr";
   const baseTitle = "공정손해사정 | 서울·경기 교통사고 산재 보험금 상담";
   const baseDesc = "교통사고 합의금, 산재 불승인, 보험금 부지급 문제를 사고자료와 의학자료 기준으로 전문 검토하는 공정손해사정입니다.";
 
-  const title = keyword ? `${keyword} 상담 - 공정손해사정` : baseTitle;
-  const description = keyword 
-    ? `${keyword} 관련 합의금, 손해액 산정, 보험금 분쟁 문제를 의학자료 기준으로 정밀 검토해드립니다.` 
-    : baseDesc;
+  const type = classifyKeyword(keyword);
+  const dki = getDKIContent(keyword, type);
+
+  const title = keyword ? dki.metaTitle : baseTitle;
+  const description = keyword ? dki.metaDesc : baseDesc;
 
   const canonicalUrl = k ? `${baseUrl}/?k=${encodeURIComponent(k)}` : baseUrl;
 
