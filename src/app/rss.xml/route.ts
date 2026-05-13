@@ -7,10 +7,10 @@ export async function GET() {
   
   // 주요 카테고리별 핵심 키워드 추출 (RSS용)
   const topKeywords = [
-    ...keywords.filter(k => k.category === "교통사고").slice(0, 5),
-    ...keywords.filter(k => k.category === "산재").slice(0, 5),
-    ...keywords.filter(k => k.category === "보험금 분쟁").slice(0, 5),
-    ...keywords.filter(k => k.category === "후유장해").slice(0, 5),
+    ...keywords.filter(k => k.category === "교통사고 합의 전후").slice(0, 5),
+    ...keywords.filter(k => k.category === "산재 신청·치료종결").slice(0, 5),
+    ...keywords.filter(k => k.category === "보험금 부지급 대응").slice(0, 5),
+    ...keywords.filter(k => k.category === "후유장해 진단·평가").slice(0, 5),
   ];
 
   const rssItems = [
