@@ -3,6 +3,7 @@ import MainPageContent from "@/components/MainPageContent";
 import { commonFaqs } from "@/lib/faqData";
 
 import { classifyKeyword, getDKIContent } from "@/lib/dkiUtils";
+import { redirect } from "next/navigation";
 
 interface PageProps {
   searchParams: { k?: string };
@@ -44,7 +45,6 @@ export function generateMetadata(): Metadata {
   };
 }
 
-import { redirect } from "next/navigation";
 
 export default function Page({ searchParams }: PageProps) {
   const baseUrl = "https://www.gongjungsh.co.kr";

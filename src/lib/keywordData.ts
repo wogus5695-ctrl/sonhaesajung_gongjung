@@ -60,7 +60,6 @@ export const keywordItems: KeywordItem[] = [
   createKeyword("교통사고 손해사정사", "손해사정사 비용·선임", "교통사고 전문"),
   createKeyword("산재 손해사정사", "손해사정사 비용·선임", "산재 전문"),
   createKeyword("보험금 손해사정사", "손해사정사 비용·선임", "보험금 전문"),
-  createKeyword("후유장해 손해사정사", "손해사정사 비용·선임", "후유장해 전문"),
 
   // [교통사고 합의 전후]
   createKeyword("교통사고 합의금", "교통사고 합의 전후", "합의금 산정"),

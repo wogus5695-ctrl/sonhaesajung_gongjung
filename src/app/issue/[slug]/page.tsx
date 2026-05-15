@@ -10,15 +10,15 @@ interface PageProps {
 
 export async function generateStaticParams() {
   const keywords = getAllKeywords();
-  return keywords.map((item) => ({
-    slug: item.slug,
+  const slugs = Array.from(new Set(keywords.map(item => item.slug)));
+  return slugs.map((slug) => ({
+    slug: slug,
   }));
 }
 
 export function generateMetadata({ params }: PageProps): Metadata {
   const slug = params.slug;
-  const decodedSlug = decodeURIComponent(slug);
-  const keyword = decodedSlug.replace(/-/g, ' ').replace(/[<>]/g, '').trim();
+  const keyword = slug.replace(/-/g, ' ').replace(/[<>]/g, '').trim();
   
   const baseUrl = "https://www.gongjungsh.co.kr";
   const baseTitle = "공정손해사정 | 서울·경기 교통사고 산재 보험금 상담";
@@ -64,8 +64,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
 export default function Page({ params }: PageProps) {
   const baseUrl = "https://www.gongjungsh.co.kr";
   const slug = params.slug;
-  const decodedSlug = decodeURIComponent(slug);
-  const keyword = decodedSlug.replace(/-/g, ' ').replace(/[<>]/g, '');
+  const keyword = slug.replace(/-/g, ' ').replace(/[<>]/g, '');
   
   const serviceJsonLd = {
     "@context": "https://schema.org",
@@ -147,7 +146,7 @@ export default function Page({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      <MainPageContent k={decodedSlug} />
+      <MainPageContent k={slug} />
     </>
   );
 }
