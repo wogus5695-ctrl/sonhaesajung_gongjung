@@ -1,19 +1,36 @@
 import { Metadata } from "next";
 import MainPageContent from "@/components/MainPageContent";
 import { commonFaqs } from "@/lib/faqData";
-
 import { classifyKeyword, getDKIContent } from "@/lib/dkiUtils";
+import { getAllKeywords } from "@/lib/keywordData";
 
 interface PageProps {
-  searchParams: { k?: string };
+  params: { slug: string };
 }
 
-export function generateMetadata(): Metadata {
-  const baseUrl = "https://www.gongjungsh.co.kr";
-  const title = "공정손해사정 | 서울·경기 교통사고 산재 보험금 상담";
-  const description = "교통사고 합의금, 산재 불승인, 보험금 부지급 문제를 사고자료와 의학자료 기준으로 전문 검토하는 공정손해사정입니다.";
+export async function generateStaticParams() {
+  const keywords = getAllKeywords();
+  return keywords.map((item) => ({
+    slug: item.slug,
+  }));
+}
 
-  const canonicalUrl = baseUrl;
+export function generateMetadata({ params }: PageProps): Metadata {
+  const slug = params.slug;
+  const decodedSlug = decodeURIComponent(slug);
+  const keyword = decodedSlug.replace(/-/g, ' ').replace(/[<>]/g, '').trim();
+  
+  const baseUrl = "https://www.gongjungsh.co.kr";
+  const baseTitle = "공정손해사정 | 서울·경기 교통사고 산재 보험금 상담";
+  const baseDesc = "교통사고 합의금, 산재 불승인, 보험금 부지급 문제를 사고자료와 의학자료 기준으로 전문 검토하는 공정손해사정입니다.";
+
+  const type = classifyKeyword(keyword);
+  const dki = getDKIContent(keyword, type);
+
+  const title = keyword ? dki.metaTitle : baseTitle;
+  const description = keyword ? dki.metaDesc : baseDesc;
+
+  const canonicalUrl = `${baseUrl}/issue/${slug}`;
 
   return {
     title,
@@ -44,17 +61,11 @@ export function generateMetadata(): Metadata {
   };
 }
 
-import { redirect } from "next/navigation";
-
-export default function Page({ searchParams }: PageProps) {
+export default function Page({ params }: PageProps) {
   const baseUrl = "https://www.gongjungsh.co.kr";
-  const k = searchParams.k;
-
-  if (k) {
-    redirect(`/issue/${k}`);
-  }
-
-  const keyword = "";
+  const slug = params.slug;
+  const decodedSlug = decodeURIComponent(slug);
+  const keyword = decodedSlug.replace(/-/g, ' ').replace(/[<>]/g, '');
   
   const serviceJsonLd = {
     "@context": "https://schema.org",
@@ -94,12 +105,18 @@ export default function Page({ searchParams }: PageProps) {
         "name": "홈",
         "item": baseUrl
       },
-      ...(keyword ? [{
+      {
         "@type": "ListItem",
         "position": 2,
+        "name": "키워드 상담",
+        "item": `${baseUrl}/sitemap-seoul-gyeonggi`
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
         "name": keyword,
-        "item": `${baseUrl}/?k=${encodeURIComponent(k || '')}`
-      }] : [])
+        "item": `${baseUrl}/issue/${slug}`
+      }
     ]
   };
 
@@ -130,7 +147,7 @@ export default function Page({ searchParams }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      <MainPageContent k={searchParams.k} />
+      <MainPageContent k={decodedSlug} />
     </>
   );
 }

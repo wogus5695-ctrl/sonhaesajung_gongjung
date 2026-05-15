@@ -23,10 +23,10 @@ export async function GET() {
     },
     ...topKeywords.map(k => ({
       title: `${k.label} 전문 상담 안내 - 공정손해사정`,
-      link: `${baseUrl}/?k=${encodeURIComponent(k.slug)}`,
+      link: `${baseUrl}/issue/${k.slug}`,
       description: `${k.label} 관련 합의금 산정, 보험금 부지급, 산재 불승인 등 손해사정 쟁점을 의학자료 기준으로 검토합니다.`,
       pubDate: now,
-      guid: `${baseUrl}/?k=${encodeURIComponent(k.slug)}`
+      guid: `${baseUrl}/issue/${k.slug}`
     }))
   ];
 

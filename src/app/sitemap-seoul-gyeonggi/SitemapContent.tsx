@@ -122,7 +122,7 @@ export default function SitemapContent() {
                 {items.map((item) => (
                   <Link 
                     key={item.slug} 
-                    href={item.url}
+                    href={`/issue/${item.slug}`}
                     className="group p-4 bg-white border border-brand-line rounded-xl hover:border-brand-gold hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center justify-between"
                   >
                     <span className="text-[15px] md:text-base font-bold text-brand-primary group-hover:text-brand-gold transition-colors truncate pr-2">

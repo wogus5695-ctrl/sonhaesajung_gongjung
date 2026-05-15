@@ -19,6 +19,8 @@ import CTAButton from '@/components/CTAButton';
 import { classifyKeyword, getDKIContent, getProblemSituationsByTheme } from '@/lib/dkiUtils';
 import CaseSection from '@/components/CaseSection';
 import { commonFaqs } from '@/lib/faqData';
+import { getExpertContent } from '@/lib/expertContent';
+import { Quote, Lightbulb } from 'lucide-react';
 
 // --- Data ---
 const mainServices = [
@@ -172,6 +174,48 @@ export default function MainPageContent({ k }: { k?: string }) {
           </div>
         </div>
       </section>
+
+      {/* 3.5 Expert Deep Dive (Only for Core Keywords) */}
+      {hasKeyword && getExpertContent(k || "") && (
+        <section className="section-py bg-brand-primary/5">
+          <div className="section-container">
+            <div className="max-w-4xl mx-auto bg-white rounded-[2.5rem] p-8 md:p-16 shadow-xl border border-brand-line relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-8 opacity-5">
+                <Quote className="w-32 h-32 text-brand-primary rotate-180" />
+              </div>
+              
+              <div className="relative z-10">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-gold/10 text-brand-gold rounded-full text-sm font-black mb-8">
+                  <Lightbulb className="w-4 h-4" /> 전문가 어드바이스
+                </div>
+                
+                <h3 className="text-2xl md:text-4xl font-black text-brand-primary mb-6 break-keep">
+                  {getExpertContent(k || "")?.deepDiveTitle}
+                </h3>
+                
+                <p className="text-brand-muted text-lg md:text-xl mb-10 leading-relaxed break-keep border-l-4 border-brand-gold pl-6">
+                  {getExpertContent(k || "")?.summary}
+                </p>
+                
+                <div className="grid gap-4 mb-12">
+                  {getExpertContent(k || "")?.deepDiveContent.map((text, i) => (
+                    <div key={i} className="flex items-start gap-4 p-5 bg-brand-ivory rounded-2xl">
+                      <CheckCircle2 className="w-6 h-6 text-brand-gold shrink-0 mt-0.5" />
+                      <p className="text-brand-primary font-bold leading-relaxed">{text}</p>
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="p-8 bg-brand-primary text-white rounded-3xl text-center">
+                  <p className="text-lg md:text-xl font-bold break-keep">
+                    "{getExpertContent(k || "")?.keyPoint}"
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* 4. Key Services Section */}
       <section id="traffic" className="section-py bg-brand-ivory">

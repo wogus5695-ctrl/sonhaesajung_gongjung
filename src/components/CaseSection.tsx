@@ -5,8 +5,42 @@ import { caseStudies } from '@/lib/caseData';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
+import { classifyKeyword } from '@/lib/dkiUtils';
+
 export default function CaseSection({ keyword }: { keyword?: string }) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  
+  const theme = classifyKeyword(keyword || "");
+
+  const sortedCases = React.useMemo(() => {
+    if (!keyword) return caseStudies;
+    
+    return [...caseStudies].sort((a, b) => {
+      let aMatch = false;
+      let bMatch = false;
+      
+      if (theme === "traffic_settle" || theme === "traffic_injury") {
+        aMatch = ["교통사고", "오토바이 사고"].includes(a.category);
+        bMatch = ["교통사고", "오토바이 사고"].includes(b.category);
+      } else if (theme.startsWith("industrial")) {
+        aMatch = ["산재", "추가상병", "장해등급", "폐암 산재"].includes(a.category);
+        bMatch = ["산재", "추가상병", "장해등급", "폐암 산재"].includes(b.category);
+      } else if (theme === "cancer") {
+        aMatch = a.category === "암보험금";
+        bMatch = b.category === "암보험금";
+      } else if (theme === "disability") {
+        aMatch = a.category === "후유장해";
+        bMatch = b.category === "후유장해";
+      } else if (theme.startsWith("insurance")) {
+        aMatch = ["보험금 분쟁", "고지의무"].includes(a.category);
+        bMatch = ["보험금 분쟁", "고지의무"].includes(b.category);
+      }
+      
+      if (aMatch && !bMatch) return -1;
+      if (!aMatch && bMatch) return 1;
+      return 0;
+    });
+  }, [keyword, theme]);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
@@ -70,7 +104,7 @@ export default function CaseSection({ keyword }: { keyword?: string }) {
           className="flex gap-6 overflow-x-auto pb-12 snap-x snap-mandatory no-scrollbar"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {caseStudies.map((item) => (
+          {sortedCases.map((item) => (
             <div 
               key={item.id} 
               className="flex-shrink-0 w-[85vw] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] snap-start"
