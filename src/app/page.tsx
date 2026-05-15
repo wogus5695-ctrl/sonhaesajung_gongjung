@@ -51,7 +51,7 @@ export default function Page({ searchParams }: PageProps) {
   const k = searchParams.k;
 
   if (k) {
-    redirect(`/issue/${k}`);
+    redirect(`/issue/${encodeURIComponent(k)}`);
   }
 
   const keyword = "";
