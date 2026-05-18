@@ -18,7 +18,7 @@ export interface KeywordItem {
   category: KeywordCategory;
   intent: string;
   url: string;
-  regionGroup?: "서울" | "경기";
+  regionGroup?: "서울" | "경기" | "인천";
   region?: string;
   service?: string;
 }
@@ -459,6 +459,10 @@ export const gyeonggiRegions = [
   "경기", "수원", "성남", "용인", "고양", "부천", "안산", "안양", "화성", "평택", "시흥", "김포", "남양주", "의정부", "광명", "하남", "파주", "군포", "광주", "이천", "안성", "양주", "구리", "오산", "의왕", "포천", "동두천", "과천", "여주"
 ];
 
+export const incheonRegions = [
+  "인천", "인천 중구", "인천 동구", "미추홀", "연수", "남동", "부평", "계양", "인천 서구", "강화", "옹진", "송도", "청라"
+];
+
 export const basicServices = [
   "손해사정사",
   "손해사정사 상담",
@@ -471,7 +475,7 @@ export const basicServices = [
 ];
 
 export const specializedRegions = [
-  "안산", "시흥", "화성", "평택", "김포", "이천", "안성", "파주", "양주"
+  "안산", "시흥", "화성", "평택", "김포", "이천", "안성", "파주", "양주", "인천", "남동"
 ];
 
 export const specializedServices = [
@@ -487,6 +491,7 @@ export const generatedRegionalKeywords: KeywordItem[] = [];
 let dupCount = 0;
 let seoulAddedCount = 0;
 let gyeonggiAddedCount = 0;
+let incheonAddedCount = 0;
 let specializedAddedCount = 0;
 
 const existingLabels = new Set(keywordItems.map(k => k.label));
@@ -496,7 +501,7 @@ const existingUrls = new Set(keywordItems.map(k => k.url));
 const addRegionalKeyword = (
   region: string,
   service: string,
-  regionGroup: "서울" | "경기",
+  regionGroup: "서울" | "경기" | "인천",
   isSpecialized: boolean = false
 ) => {
   const label = `${region} ${service}`;
@@ -533,6 +538,8 @@ const addRegionalKeyword = (
     specializedAddedCount++;
   } else if (regionGroup === "서울") {
     seoulAddedCount++;
+  } else if (regionGroup === "인천") {
+    incheonAddedCount++;
   } else {
     gyeonggiAddedCount++;
   }
@@ -552,16 +559,25 @@ gyeonggiRegions.forEach(region => {
   });
 });
 
-// Generate Gyeonggi Specialized
+// Generate Incheon Basic
+incheonRegions.forEach(region => {
+  basicServices.forEach(service => {
+    addRegionalKeyword(region, service, "인천");
+  });
+});
+
+// Generate Specialized
 specializedRegions.forEach(region => {
   specializedServices.forEach(service => {
-    addRegionalKeyword(region, service, "경기", true);
+    const group = (region === "인천" || region === "남동") ? "인천" : "경기";
+    addRegionalKeyword(region, service, group, true);
   });
 });
 
 export const duplicateKeywordsCount = dupCount;
 export const addedSeoulKeywordsCount = seoulAddedCount;
 export const addedGyeonggiKeywordsCount = gyeonggiAddedCount;
+export const addedIncheonKeywordsCount = incheonAddedCount;
 export const addedSpecializedKeywordsCount = specializedAddedCount;
 export const totalAddedKeywordsCount = generatedRegionalKeywords.length;
 
@@ -572,4 +588,5 @@ export const getAllKeywords = (): KeywordItem[] => {
 export const getKeywordsByCategory = (category: KeywordCategory): KeywordItem[] => {
   return getAllKeywords().filter(k => k.category === category);
 };
+
 
