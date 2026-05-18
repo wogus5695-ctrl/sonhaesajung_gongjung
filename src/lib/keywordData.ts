@@ -18,6 +18,9 @@ export interface KeywordItem {
   category: KeywordCategory;
   intent: string;
   url: string;
+  regionGroup?: "서울" | "경기";
+  region?: string;
+  service?: string;
 }
 
 export const categoryDescriptions: Record<KeywordCategory, string> = {
@@ -448,11 +451,125 @@ export const keywordItems: KeywordItem[] = [
   createKeyword("플랫폼 노동자 산재", "배달·운송 산재", "플랫폼 노동"),
 ];
 
+export const seoulRegions = [
+  "서울", "강남", "서초", "송파", "강동", "영등포", "마포", "강서", "구로", "금천", "관악", "동작", "성동", "광진", "노원", "은평", "동대문", "중랑", "용산", "중구", "종로", "성북", "강북", "도봉", "서대문", "양천"
+];
+
+export const gyeonggiRegions = [
+  "경기", "수원", "성남", "용인", "고양", "부천", "안산", "안양", "화성", "평택", "시흥", "김포", "남양주", "의정부", "광명", "하남", "파주", "군포", "광주", "이천", "안성", "양주", "구리", "오산", "의왕", "포천", "동두천", "과천", "여주"
+];
+
+export const basicServices = [
+  "손해사정사",
+  "손해사정사 상담",
+  "교통사고 손해사정사",
+  "교통사고 합의금",
+  "보험금 부지급",
+  "후유장해 보험금",
+  "산재 불승인",
+  "산재 장해등급"
+];
+
+export const specializedRegions = [
+  "안산", "시흥", "화성", "평택", "김포", "이천", "안성", "파주", "양주"
+];
+
+export const specializedServices = [
+  "산재 손해사정사",
+  "산재 치료 종결",
+  "직업병 산재",
+  "폐암 산재",
+  "산재 장해진단서"
+];
+
+export const generatedRegionalKeywords: KeywordItem[] = [];
+
+let dupCount = 0;
+let seoulAddedCount = 0;
+let gyeonggiAddedCount = 0;
+let specializedAddedCount = 0;
+
+const existingLabels = new Set(keywordItems.map(k => k.label));
+const existingSlugs = new Set(keywordItems.map(k => k.slug));
+const existingUrls = new Set(keywordItems.map(k => k.url));
+
+const addRegionalKeyword = (
+  region: string,
+  service: string,
+  regionGroup: "서울" | "경기",
+  isSpecialized: boolean = false
+) => {
+  const label = `${region} ${service}`;
+  const slug = label.trim().replace(/\s+/g, '-');
+  const url = `/issue/${encodeURIComponent(slug)}`;
+
+  if (existingLabels.has(label) || existingSlugs.has(slug) || existingUrls.has(url)) {
+    dupCount++;
+    return;
+  }
+
+  const isDuplicateInternal = generatedRegionalKeywords.some(
+    k => k.label === label || k.slug === slug || k.url === url
+  );
+  if (isDuplicateInternal) {
+    dupCount++;
+    return;
+  }
+
+  const newItem: KeywordItem = {
+    label,
+    slug,
+    category: "지역 상담",
+    intent: `${region} ${service} 상담`,
+    url,
+    regionGroup,
+    region,
+    service
+  };
+
+  generatedRegionalKeywords.push(newItem);
+
+  if (isSpecialized) {
+    specializedAddedCount++;
+  } else if (regionGroup === "서울") {
+    seoulAddedCount++;
+  } else {
+    gyeonggiAddedCount++;
+  }
+};
+
+// Generate Seoul Basic
+seoulRegions.forEach(region => {
+  basicServices.forEach(service => {
+    addRegionalKeyword(region, service, "서울");
+  });
+});
+
+// Generate Gyeonggi Basic
+gyeonggiRegions.forEach(region => {
+  basicServices.forEach(service => {
+    addRegionalKeyword(region, service, "경기");
+  });
+});
+
+// Generate Gyeonggi Specialized
+specializedRegions.forEach(region => {
+  specializedServices.forEach(service => {
+    addRegionalKeyword(region, service, "경기", true);
+  });
+});
+
+export const duplicateKeywordsCount = dupCount;
+export const addedSeoulKeywordsCount = seoulAddedCount;
+export const addedGyeonggiKeywordsCount = gyeonggiAddedCount;
+export const addedSpecializedKeywordsCount = specializedAddedCount;
+export const totalAddedKeywordsCount = generatedRegionalKeywords.length;
+
 export const getAllKeywords = (): KeywordItem[] => {
-  return keywordItems;
+  return [...keywordItems, ...generatedRegionalKeywords];
 };
 
 export const getKeywordsByCategory = (category: KeywordCategory): KeywordItem[] => {
-  return keywordItems.filter(k => k.category === category);
+  return getAllKeywords().filter(k => k.category === category);
 };
 

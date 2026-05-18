@@ -59,12 +59,61 @@ export const classifyKeyword = (k: string): DKIType => {
 export const getDKIContent = (keyword: string, type: DKIType): DKIContent => {
   const k = keyword || "손해액과 보험금 산정";
   const brand = "공정손해사정";
+
+  const regions = [
+    "서울", "강남", "서초", "송파", "강동", "영등포", "마포", "강서", "구로", "금천", "관악", "동작", "성동", "광진", "노원", "은평", "동대문", "중랑", "용산", "중구", "종로", "성북", "강북", "도봉", "서대문", "양천", 
+    "경기", "수원", "성남", "용인", "고양", "부천", "안산", "안양", "화성", "평택", "시흥", "김포", "남양주", "의정부", "광명", "하남", "파주", "군포", "광주", "이천", "안성", "양주", "구리", "오산", "의왕", "포천", "동두천", "과천", "여주"
+  ];
+  const sortedRegions = [...regions].sort((a, b) => b.length - a.length);
+
+  let matchedRegion = "";
+  for (const r of sortedRegions) {
+    if (k.startsWith(r)) {
+      matchedRegion = r;
+      break;
+    }
+  }
+
+  if (matchedRegion) {
+    const service = k.substring(matchedRegion.length).trim();
+    
+    // H1 (heroTitle)
+    let heroTitle = "";
+    if (service === "손해사정사" || service === "손해사정사 상담") {
+      heroTitle = `${matchedRegion} ${service} 상담이 필요하신가요?`;
+    } else if (service.includes("합의금") || service.includes("손해사정사")) {
+      heroTitle = `${matchedRegion} ${service} 검토가 필요하신가요?`;
+    } else if (service.includes("불승인") || service.includes("부지급") || service.includes("장해등급") || service.includes("보험금") || service.includes("치료 종결") || service.includes("직업병") || service.includes("폐암") || service.includes("장해진단서")) {
+      heroTitle = `${matchedRegion} ${service} 관련 검토가 필요하신가요?`;
+    } else {
+      heroTitle = `${matchedRegion} ${service} 검토가 필요하신가요?`;
+    }
+
+    // Subtitle (heroSubtitle)
+    let heroSubtitle = "";
+    if (service.includes("교통사고") || service.includes("합의금")) {
+      heroSubtitle = `${matchedRegion} 지역의 교통사고 합의금, 후유장해, 과실비율, 향후치료비, 휴업손해 문제를 사고자료와 의무기록을 기준으로 검토합니다.`;
+    } else if (service.includes("보험금") || service.includes("부지급") || service.includes("후유장해")) {
+      heroSubtitle = `${matchedRegion} 지역의 보험금 부지급, 후유장해 보험금, 보험사 의료자문, 고지의무 위반 문제를 약관과 의무기록, 보험사 안내문을 기준으로 검토합니다.`;
+    } else if (service.includes("산재") || service.includes("직업병") || service.includes("폐암") || service.includes("장해등급") || service.includes("치료 종결") || service.includes("장해진단서")) {
+      heroSubtitle = `${matchedRegion} 지역의 산재 불승인, 장해등급, 치료 종결, 직업병 산재 문제는 재해경위, 의무기록, 업무관련성 자료를 기준으로 검토합니다.`;
+    } else {
+      heroSubtitle = `${matchedRegion} 지역의 ${service} 관련 문제는 사고자료, 의무기록, 보험약관, 산재 결정서 등 개별 자료를 기준으로 확인해야 합니다.`;
+    }
+
+    const ctaText = `${matchedRegion} ${service} 검토 신청`;
+    const metaTitle = `${matchedRegion} ${service} 상담 - ${brand}`;
+    const metaDesc = `${matchedRegion} 지역에서 ${service} 문제로 손해사정 상담을 찾으신다면, ${brand}에서 사고 자료와 객관적 기준을 바탕으로 세밀하게 검토해 드립니다.`;
+
+    return { type, heroTitle, heroSubtitle, ctaText, metaTitle, metaDesc };
+  }
   
   let heroTitle = "";
   let heroSubtitle = "";
   let ctaText = "무료 사건 검토 신청";
   let metaTitle = `${k} 상담 - ${brand}`;
   let metaDesc = `${k} 관련 손해액 산정 및 보험금 분쟁 문제를 의학자료 기준으로 정밀 검토해드립니다.`;
+
 
   switch (type) {
     case "consulting":

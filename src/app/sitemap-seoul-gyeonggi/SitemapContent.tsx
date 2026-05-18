@@ -3,13 +3,58 @@ import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { ChevronRight, Search, Filter, Info } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { getAllKeywords, KeywordCategory, KeywordItem, categoryDescriptions } from '@/lib/keywordData';
+import { 
+  getAllKeywords, 
+  KeywordCategory, 
+  KeywordItem, 
+  categoryDescriptions,
+  generatedRegionalKeywords
+} from '@/lib/keywordData';
 
 export default function SitemapContent() {
   const [activeCategory, setActiveCategory] = useState<KeywordCategory | "전체">("전체");
   const [searchQuery, setSearchQuery] = useState("");
+  const [isSeoulExpanded, setIsSeoulExpanded] = useState(false);
+  const [isGyeonggiExpanded, setIsGyeonggiExpanded] = useState(false);
 
-  const allKeywords = useMemo(() => getAllKeywords(), []);
+  const allKeywords = useMemo(() => {
+    return getAllKeywords().filter(item => !item.regionGroup);
+  }, []);
+
+  const seoulRegionalKeywords = useMemo(() => {
+    return generatedRegionalKeywords.filter(k => k.regionGroup === "서울");
+  }, []);
+
+  const gyeonggiRegionalKeywords = useMemo(() => {
+    return generatedRegionalKeywords.filter(k => k.regionGroup === "경기");
+  }, []);
+
+  const groupByRegion = (items: KeywordItem[]) => {
+    const grouped: Record<string, KeywordItem[]> = {};
+    items.forEach(item => {
+      if (item.region) {
+        if (!grouped[item.region]) {
+          grouped[item.region] = [];
+        }
+        grouped[item.region].push(item);
+      }
+    });
+    return grouped;
+  };
+
+  const seoulGrouped = useMemo(() => groupByRegion(seoulRegionalKeywords), [seoulRegionalKeywords]);
+  const gyeonggiGrouped = useMemo(() => groupByRegion(gyeonggiRegionalKeywords), [gyeonggiRegionalKeywords]);
+
+  const seoulRegionsList = useMemo(() => Object.keys(seoulGrouped), [seoulGrouped]);
+  const gyeonggiRegionsList = useMemo(() => Object.keys(gyeonggiGrouped), [gyeonggiGrouped]);
+
+  const visibleSeoulRegions = useMemo(() => {
+    return isSeoulExpanded ? seoulRegionsList : seoulRegionsList.slice(0, 8);
+  }, [seoulRegionsList, isSeoulExpanded]);
+
+  const visibleGyeonggiRegions = useMemo(() => {
+    return isGyeonggiExpanded ? gyeonggiRegionsList : gyeonggiRegionsList.slice(0, 8);
+  }, [gyeonggiRegionsList, isGyeonggiExpanded]);
 
   const categories: (KeywordCategory | "전체")[] = [
     "전체", 
@@ -150,6 +195,102 @@ export default function SitemapContent() {
         </div>
       </section>
 
+      {/* 3.5 Seoul/Gyeonggi Regional Keywords Section */}
+      <section className="py-20 bg-slate-50 border-t border-brand-line">
+        <div className="section-container">
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl md:text-4xl font-black text-brand-primary mb-4 break-keep">
+              서울·경기 지역별 손해사정 상담 키워드
+            </h2>
+            <p className="text-brand-muted text-base md:text-lg max-w-4xl mx-auto break-keep leading-relaxed">
+              서울·경기 지역에서 교통사고 합의금, 보험금 부지급, 후유장해 보험금, 산재 불승인, 산재 장해등급 문제로 손해사정 상담을 찾는 사용자를 위한 지역별 키워드입니다. 각 키워드를 선택하면 해당 상황에 맞는 상담 안내 페이지로 이동합니다.
+            </p>
+          </div>
+
+          {/* Seoul Group */}
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-8 border-b border-brand-line pb-4">
+              <span className="w-1.5 h-6 bg-brand-gold rounded-full" />
+              <h3 className="text-2xl font-black text-brand-primary">
+                서울 구 단위 상담 키워드
+              </h3>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {visibleSeoulRegions.map(regionName => (
+                <div key={regionName} className="bg-white border border-brand-line/60 rounded-2xl p-5 hover:border-brand-gold/30 hover:shadow-md transition-all duration-300">
+                  <h4 className="text-base font-bold text-brand-primary mb-3.5 pb-2 border-b border-brand-line/50 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-brand-gold" />
+                    {regionName} 지역
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {seoulGrouped[regionName].map(item => (
+                      <Link
+                        key={item.slug}
+                        href={`/issue/${item.slug}`}
+                        className="text-xs md:text-sm font-bold bg-slate-50 border border-brand-line/60 text-brand-muted hover:border-brand-gold hover:text-brand-gold px-2.5 py-1.5 rounded-lg transition-colors inline-block"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 text-center">
+              <button 
+                onClick={() => setIsSeoulExpanded(!isSeoulExpanded)}
+                className="px-6 py-3 border-2 border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white font-bold rounded-xl transition-all text-sm inline-flex items-center gap-2 mx-auto focus:outline-none"
+              >
+                {isSeoulExpanded ? "서울 지역 키워드 접기" : "전체 서울 지역 키워드 보기"}
+              </button>
+            </div>
+          </div>
+
+          {/* Gyeonggi Group */}
+          <div>
+            <div className="flex items-center gap-3 mb-8 border-b border-brand-line pb-4">
+              <span className="w-1.5 h-6 bg-brand-gold rounded-full" />
+              <h3 className="text-2xl font-black text-brand-primary">
+                경기 시 단위 상담 키워드
+              </h3>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {visibleGyeonggiRegions.map(regionName => (
+                <div key={regionName} className="bg-white border border-brand-line/60 rounded-2xl p-5 hover:border-brand-gold/30 hover:shadow-md transition-all duration-300">
+                  <h4 className="text-base font-bold text-brand-primary mb-3.5 pb-2 border-b border-brand-line/50 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-brand-gold" />
+                    {regionName} 지역
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {gyeonggiGrouped[regionName].map(item => (
+                      <Link
+                        key={item.slug}
+                        href={`/issue/${item.slug}`}
+                        className="text-xs md:text-sm font-bold bg-slate-50 border border-brand-line/60 text-brand-muted hover:border-brand-gold hover:text-brand-gold px-2.5 py-1.5 rounded-lg transition-colors inline-block"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 text-center">
+              <button 
+                onClick={() => setIsGyeonggiExpanded(!isGyeonggiExpanded)}
+                className="px-6 py-3 border-2 border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white font-bold rounded-xl transition-all text-sm inline-flex items-center gap-2 mx-auto focus:outline-none"
+              >
+                {isGyeonggiExpanded ? "경기 지역 키워드 접기" : "전체 경기 지역 키워드 보기"}
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 4. Bottom CTA */}
       <section className="py-24 bg-brand-ivory border-t border-brand-line">
         <div className="section-container text-center">
@@ -172,4 +313,5 @@ export default function SitemapContent() {
     </div>
   );
 }
+
 
