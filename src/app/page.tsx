@@ -9,12 +9,51 @@ interface PageProps {
   searchParams: { k?: string };
 }
 
-export function generateMetadata(): Metadata {
+export function generateMetadata({ searchParams }: PageProps): Metadata {
   const baseUrl = "https://www.gongjungsh.co.kr";
-  const title = "공정손해사정 | 서울·경기 교통사고 산재 보험금 상담";
-  const description = "교통사고 합의금, 산재 불승인, 보험금 부지급 문제를 사고자료와 의학자료 기준으로 전문 검토하는 공정손해사정입니다.";
+  const baseTitle = "공정손해사정 | 서울·경기 교통사고 산재 보험금 상담";
+  const baseDesc = "교통사고 합의금, 산재 불승인, 보험금 부지급 문제를 사고자료와 의학자료 기준으로 전문 검토하는 공정손해사정입니다.";
 
-  const canonicalUrl = baseUrl;
+  const k = searchParams?.k;
+
+  if (!k) {
+    return {
+      title: baseTitle,
+      description: baseDesc,
+      alternates: {
+        canonical: baseUrl,
+      },
+      openGraph: {
+        title: baseTitle,
+        description: baseDesc,
+        type: "website",
+        url: baseUrl,
+        images: [
+          {
+            url: `${baseUrl}/og-image.png`,
+            width: 1200,
+            height: 630,
+            alt: "공정손해사정 전문가 상담",
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: baseTitle,
+        description: baseDesc,
+        images: [`${baseUrl}/og-image.png`],
+      },
+    };
+  }
+
+  const decodedK = decodeURIComponent(k);
+  const keyword = decodedK.replace(/-/g, ' ').replace(/[<>]/g, '').trim();
+  const type = classifyKeyword(keyword);
+  const dki = getDKIContent(keyword, type);
+
+  const title = keyword ? dki.metaTitle : baseTitle;
+  const description = keyword ? dki.metaDesc : baseDesc;
+  const canonicalUrl = `${baseUrl}/?k=${encodeURIComponent(k)}`;
 
   return {
     title,
@@ -50,11 +89,8 @@ export default function Page({ searchParams }: PageProps) {
   const baseUrl = "https://www.gongjungsh.co.kr";
   const k = searchParams.k;
 
-  if (k) {
-    permanentRedirect(`/issue/${encodeURIComponent(k)}`);
-  }
-
-  const keyword = "";
+  const decodedK = k ? decodeURIComponent(k) : "";
+  const keyword = decodedK.replace(/-/g, ' ').replace(/[<>]/g, '').trim();
   
   const serviceJsonLd = {
     "@context": "https://schema.org",
@@ -98,7 +134,7 @@ export default function Page({ searchParams }: PageProps) {
         "@type": "ListItem",
         "position": 2,
         "name": keyword,
-        "item": `${baseUrl}/issue/${encodeURIComponent(k || '')}`
+        "item": `${baseUrl}/?k=${encodeURIComponent(k || '')}`
       }] : [])
     ]
   };

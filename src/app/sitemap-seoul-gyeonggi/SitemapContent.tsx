@@ -178,7 +178,7 @@ export default function SitemapContent() {
                 {items.map((item) => (
                   <Link 
                     key={item.slug} 
-                    href={`/issue/${item.slug}`}
+                    href={`/?k=${encodeURIComponent(item.slug)}`}
                     className="group p-4 bg-white border border-brand-line rounded-xl hover:border-brand-gold hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center justify-between"
                   >
                     <span className="text-[15px] md:text-base font-bold text-brand-primary group-hover:text-brand-gold transition-colors truncate pr-2">
@@ -238,7 +238,7 @@ export default function SitemapContent() {
                     {seoulGrouped[regionName].map(item => (
                       <Link
                         key={item.slug}
-                        href={`/issue/${item.slug}`}
+                        href={`/?k=${encodeURIComponent(item.slug)}`}
                         className="text-xs md:text-sm font-bold bg-slate-50 border border-brand-line/60 text-brand-muted hover:border-brand-gold hover:text-brand-gold px-2.5 py-1.5 rounded-lg transition-colors inline-block"
                       >
                         {item.label}
@@ -279,7 +279,7 @@ export default function SitemapContent() {
                     {gyeonggiGrouped[regionName].map(item => (
                       <Link
                         key={item.slug}
-                        href={`/issue/${item.slug}`}
+                        href={`/?k=${encodeURIComponent(item.slug)}`}
                         className="text-xs md:text-sm font-bold bg-slate-50 border border-brand-line/60 text-brand-muted hover:border-brand-gold hover:text-brand-gold px-2.5 py-1.5 rounded-lg transition-colors inline-block"
                       >
                         {item.label}
@@ -320,7 +320,7 @@ export default function SitemapContent() {
                     {incheonGrouped[regionName].map(item => (
                       <Link
                         key={item.slug}
-                        href={`/issue/${item.slug}`}
+                        href={`/?k=${encodeURIComponent(item.slug)}`}
                         className="text-xs md:text-sm font-bold bg-slate-50 border border-brand-line/60 text-brand-muted hover:border-brand-gold hover:text-brand-gold px-2.5 py-1.5 rounded-lg transition-colors inline-block"
                       >
                         {item.label}

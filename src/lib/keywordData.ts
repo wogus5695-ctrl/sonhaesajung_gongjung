@@ -45,7 +45,7 @@ const createKeyword = (label: string, category: KeywordCategory, intent: string)
     slug,
     category,
     intent,
-    url: `/issue/${encodeURIComponent(slug)}`
+    url: `/?k=${encodeURIComponent(slug)}`
   };
 };
 
@@ -506,7 +506,7 @@ const addRegionalKeyword = (
 ) => {
   const label = `${region} ${service}`;
   const slug = label.trim().replace(/\s+/g, '-');
-  const url = `/issue/${encodeURIComponent(slug)}`;
+  const url = `/?k=${encodeURIComponent(slug)}`;
 
   if (existingLabels.has(label) || existingSlugs.has(slug) || existingUrls.has(url)) {
     dupCount++;

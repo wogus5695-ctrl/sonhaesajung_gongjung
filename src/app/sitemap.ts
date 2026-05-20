@@ -18,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // 키워드 동적 URL 추출 및 추가
   const keywords = getAllKeywords();
   const keywordRoutes = keywords.map((item) => ({
-    url: `${baseUrl}/issue/${item.slug}`,
+    url: `${baseUrl}/?k=${encodeURIComponent(item.slug)}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.7,
