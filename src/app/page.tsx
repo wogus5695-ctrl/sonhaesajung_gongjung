@@ -3,7 +3,7 @@ import MainPageContent from "@/components/MainPageContent";
 import { commonFaqs } from "@/lib/faqData";
 
 import { classifyKeyword, getDKIContent } from "@/lib/dkiUtils";
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 
 interface PageProps {
   searchParams: { k?: string };
@@ -51,7 +51,7 @@ export default function Page({ searchParams }: PageProps) {
   const k = searchParams.k;
 
   if (k) {
-    redirect(`/issue/${encodeURIComponent(k)}`);
+    permanentRedirect(`/issue/${encodeURIComponent(k)}`);
   }
 
   const keyword = "";
@@ -98,7 +98,7 @@ export default function Page({ searchParams }: PageProps) {
         "@type": "ListItem",
         "position": 2,
         "name": keyword,
-        "item": `${baseUrl}/?k=${encodeURIComponent(k || '')}`
+        "item": `${baseUrl}/issue/${encodeURIComponent(k || '')}`
       }] : [])
     ]
   };

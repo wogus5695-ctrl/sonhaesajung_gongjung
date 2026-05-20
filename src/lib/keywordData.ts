@@ -45,7 +45,7 @@ const createKeyword = (label: string, category: KeywordCategory, intent: string)
     slug,
     category,
     intent,
-    url: `/?k=${encodeURIComponent(slug)}`
+    url: `/issue/${encodeURIComponent(slug)}`
   };
 };
 
