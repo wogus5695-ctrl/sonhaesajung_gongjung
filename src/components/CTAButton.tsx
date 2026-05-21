@@ -1,4 +1,4 @@
-import { Phone, MessageCircle } from 'lucide-react';
+import { Phone, FileText } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface CTAButtonProps {
@@ -28,10 +28,10 @@ export default function CTAButton({
         </a>
         <a 
           href="#contact"
-          className="flex-[1.5] flex items-center justify-center gap-2 py-4 bg-[#FAE100] text-[#3C1E1E] font-black text-lg active:bg-[#F7D600] transition-colors"
+          className="flex-[1.5] flex items-center justify-center gap-2 py-4 bg-brand-gold text-white font-black text-lg active:bg-brand-gold/90 transition-colors"
         >
-          <MessageCircle className="w-6 h-6 fill-[#3C1E1E]" />
-          카톡 상담
+          <FileText className="w-5 h-5" />
+          신청서 작성하기
         </a>
       </div>
     );
