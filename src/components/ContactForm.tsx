@@ -160,13 +160,13 @@ export default function ContactForm({ keyword }: { keyword?: string }) {
       </div>
 
       <div>
-        <label className="block text-sm font-bold text-brand-primary mb-2">문의내용 (필수)</label>
+        <label className="block text-sm font-bold text-brand-primary mb-2">문의내용 (병원 정보 필수*)</label>
         <textarea 
           name="content"
           value={formData.content}
           onChange={handleChange}
           rows={4}
-          placeholder="검토가 필요한 내용을 상세히 남겨주시면 더 정확한 상담이 가능합니다."
+          placeholder="현재 입원 중이신 병원 정보와 검토가 필요한 내용을 상세히 남겨 주시면 더 정확한 상담이 가능합니다."
           required
           className="w-full px-5 py-4 bg-white border border-brand-line rounded-xl focus:outline-none focus:border-brand-gold transition-colors resize-none"
         ></textarea>
