@@ -99,7 +99,7 @@ export default function Page({ searchParams }: PageProps) {
     "image": `${baseUrl}/og-image.png`,
     "@id": baseUrl,
     "url": baseUrl,
-    "telephone": "010-4861-3226",
+    "telephone": "010-4875-4972",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "경기도 고양시 덕양구 향기로 30",

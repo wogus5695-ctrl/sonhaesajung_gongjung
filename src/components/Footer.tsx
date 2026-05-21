@@ -38,7 +38,7 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-bold mb-6">고객 지원</h4>
             <ul className="space-y-4 text-sm">
-              <li><span className="block font-bold text-white mb-1">상담센터</span> 010-4861-3226</li>
+              <li><span className="block font-bold text-white mb-1">상담센터</span> 010-4875-4972</li>
               <li><span className="block font-bold text-white mb-1">운영시간</span> 평일 09:00 - 18:00 (주말/공휴일 휴무)</li>
               <li><span className="block font-bold text-white mb-1">지역</span> 서울·경기 전 지역 방문 상담</li>
             </ul>
