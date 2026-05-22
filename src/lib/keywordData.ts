@@ -498,13 +498,30 @@ const existingLabels = new Set(keywordItems.map(k => k.label));
 const existingSlugs = new Set(keywordItems.map(k => k.slug));
 const existingUrls = new Set(keywordItems.map(k => k.url));
 
+const getRegionVariations = (region: string, group: "서울" | "경기" | "인천"): string[] => {
+  const variations = [region];
+  if (group === "서울") {
+    if (region === "서울") variations.push("서울시");
+    else if (!region.endsWith("구")) variations.push(region + "구");
+  } else if (group === "경기") {
+    if (region === "경기") variations.push("경기도");
+    else if (!region.endsWith("시")) variations.push(region + "시");
+  } else if (group === "인천") {
+    if (region === "인천") variations.push("인천시");
+    else if (["미추홀", "연수", "남동", "부평", "계양"].includes(region)) variations.push(region + "구");
+    else if (["강화", "옹진"].includes(region)) variations.push(region + "군");
+  }
+  return variations;
+};
+
 const addRegionalKeyword = (
-  region: string,
+  baseRegion: string,
+  variantRegion: string,
   service: string,
   regionGroup: "서울" | "경기" | "인천",
   isSpecialized: boolean = false
 ) => {
-  const label = `${region} ${service}`;
+  const label = `${variantRegion} ${service}`;
   const slug = label.trim().replace(/\s+/g, '-');
   const url = `/?k=${encodeURIComponent(slug)}`;
 
@@ -525,10 +542,10 @@ const addRegionalKeyword = (
     label,
     slug,
     category: "지역 상담",
-    intent: `${region} ${service} 상담`,
+    intent: `${variantRegion} ${service} 상담`,
     url,
     regionGroup,
-    region,
+    region: baseRegion,
     service
   };
 
@@ -547,30 +564,42 @@ const addRegionalKeyword = (
 
 // Generate Seoul Basic
 seoulRegions.forEach(region => {
-  basicServices.forEach(service => {
-    addRegionalKeyword(region, service, "서울");
+  const variations = getRegionVariations(region, "서울");
+  variations.forEach(variant => {
+    basicServices.forEach(service => {
+      addRegionalKeyword(region, variant, service, "서울");
+    });
   });
 });
 
 // Generate Gyeonggi Basic
 gyeonggiRegions.forEach(region => {
-  basicServices.forEach(service => {
-    addRegionalKeyword(region, service, "경기");
+  const variations = getRegionVariations(region, "경기");
+  variations.forEach(variant => {
+    basicServices.forEach(service => {
+      addRegionalKeyword(region, variant, service, "경기");
+    });
   });
 });
 
 // Generate Incheon Basic
 incheonRegions.forEach(region => {
-  basicServices.forEach(service => {
-    addRegionalKeyword(region, service, "인천");
+  const variations = getRegionVariations(region, "인천");
+  variations.forEach(variant => {
+    basicServices.forEach(service => {
+      addRegionalKeyword(region, variant, service, "인천");
+    });
   });
 });
 
 // Generate Specialized
 specializedRegions.forEach(region => {
-  specializedServices.forEach(service => {
-    const group = (region === "인천" || region === "남동") ? "인천" : "경기";
-    addRegionalKeyword(region, service, group, true);
+  const group = (region === "인천" || region === "남동") ? "인천" : "경기";
+  const variations = getRegionVariations(region, group);
+  variations.forEach(variant => {
+    specializedServices.forEach(service => {
+      addRegionalKeyword(region, variant, service, group, true);
+    });
   });
 });
 
