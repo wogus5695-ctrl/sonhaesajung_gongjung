@@ -14,10 +14,6 @@ import {
 export default function SitemapContent() {
   const [activeCategory, setActiveCategory] = useState<KeywordCategory | "전체">("전체");
   const [searchQuery, setSearchQuery] = useState("");
-  const [isSeoulExpanded, setIsSeoulExpanded] = useState(false);
-  const [isGyeonggiExpanded, setIsGyeonggiExpanded] = useState(false);
-  const [isIncheonExpanded, setIsIncheonExpanded] = useState(false);
-
   const allKeywords = useMemo(() => {
     return getAllKeywords().filter(item => !item.regionGroup);
   }, []);
@@ -54,18 +50,6 @@ export default function SitemapContent() {
   const seoulRegionsList = useMemo(() => Object.keys(seoulGrouped), [seoulGrouped]);
   const gyeonggiRegionsList = useMemo(() => Object.keys(gyeonggiGrouped), [gyeonggiGrouped]);
   const incheonRegionsList = useMemo(() => Object.keys(incheonGrouped), [incheonGrouped]);
-
-  const visibleSeoulRegions = useMemo(() => {
-    return isSeoulExpanded ? seoulRegionsList : seoulRegionsList.slice(0, 8);
-  }, [seoulRegionsList, isSeoulExpanded]);
-
-  const visibleGyeonggiRegions = useMemo(() => {
-    return isGyeonggiExpanded ? gyeonggiRegionsList : gyeonggiRegionsList.slice(0, 8);
-  }, [gyeonggiRegionsList, isGyeonggiExpanded]);
-
-  const visibleIncheonRegions = useMemo(() => {
-    return isIncheonExpanded ? incheonRegionsList : incheonRegionsList.slice(0, 8);
-  }, [incheonRegionsList, isIncheonExpanded]);
 
   const categories: (KeywordCategory | "전체")[] = [
     "전체", 
@@ -228,7 +212,7 @@ export default function SitemapContent() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {visibleSeoulRegions.map(regionName => (
+              {seoulRegionsList.map(regionName => (
                 <div key={regionName} className="bg-white border border-brand-line/60 rounded-2xl p-5 hover:border-brand-gold/30 hover:shadow-md transition-all duration-300">
                   <h4 className="text-base font-bold text-brand-primary mb-3.5 pb-2 border-b border-brand-line/50 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-brand-gold" />
@@ -249,14 +233,6 @@ export default function SitemapContent() {
               ))}
             </div>
 
-            <div className="mt-8 text-center">
-              <button 
-                onClick={() => setIsSeoulExpanded(!isSeoulExpanded)}
-                className="px-6 py-3 border-2 border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white font-bold rounded-xl transition-all text-sm inline-flex items-center gap-2 mx-auto focus:outline-none"
-              >
-                {isSeoulExpanded ? "서울 지역 키워드 접기" : "전체 서울 지역 키워드 보기"}
-              </button>
-            </div>
           </div>
 
           {/* Gyeonggi Group */}
@@ -269,7 +245,7 @@ export default function SitemapContent() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {visibleGyeonggiRegions.map(regionName => (
+              {gyeonggiRegionsList.map(regionName => (
                 <div key={regionName} className="bg-white border border-brand-line/60 rounded-2xl p-5 hover:border-brand-gold/30 hover:shadow-md transition-all duration-300">
                   <h4 className="text-base font-bold text-brand-primary mb-3.5 pb-2 border-b border-brand-line/50 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-brand-gold" />
@@ -290,14 +266,6 @@ export default function SitemapContent() {
               ))}
             </div>
 
-            <div className="mt-8 text-center">
-              <button 
-                onClick={() => setIsGyeonggiExpanded(!isGyeonggiExpanded)}
-                className="px-6 py-3 border-2 border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white font-bold rounded-xl transition-all text-sm inline-flex items-center gap-2 mx-auto focus:outline-none"
-              >
-                {isGyeonggiExpanded ? "경기 지역 키워드 접기" : "전체 경기 지역 키워드 보기"}
-              </button>
-            </div>
           </div>
 
           {/* Incheon Group */}
@@ -310,7 +278,7 @@ export default function SitemapContent() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {visibleIncheonRegions.map(regionName => (
+              {incheonRegionsList.map(regionName => (
                 <div key={regionName} className="bg-white border border-brand-line/60 rounded-2xl p-5 hover:border-brand-gold/30 hover:shadow-md transition-all duration-300">
                   <h4 className="text-base font-bold text-brand-primary mb-3.5 pb-2 border-b border-brand-line/50 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-brand-gold" />
@@ -331,14 +299,6 @@ export default function SitemapContent() {
               ))}
             </div>
 
-            <div className="mt-8 text-center">
-              <button 
-                onClick={() => setIsIncheonExpanded(!isIncheonExpanded)}
-                className="px-6 py-3 border-2 border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white font-bold rounded-xl transition-all text-sm inline-flex items-center gap-2 mx-auto focus:outline-none"
-              >
-                {isIncheonExpanded ? "인천 지역 키워드 접기" : "전체 인천 지역 키워드 보기"}
-              </button>
-            </div>
           </div>
         </div>
       </section>
