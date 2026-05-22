@@ -17,6 +17,7 @@ export default function ContactForm({ keyword }: { keyword?: string }) {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
@@ -172,19 +173,39 @@ export default function ContactForm({ keyword }: { keyword?: string }) {
         ></textarea>
       </div>
 
-      <div className="flex items-start gap-3">
-        <input 
-          type="checkbox" 
-          id="privacy" 
-          name="consent"
-          checked={formData.consent}
-          onChange={handleChange}
-          required
-          className="mt-1 w-4 h-4 accent-brand-gold" 
-        />
-        <label htmlFor="privacy" className="text-xs text-brand-muted leading-relaxed cursor-pointer select-none">
-          개인정보 수집 및 이용에 동의합니다. (상담 목적 외에는 사용되지 않습니다.)
-        </label>
+      <div className="space-y-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <input 
+              type="checkbox" 
+              id="privacy" 
+              name="consent"
+              checked={formData.consent}
+              onChange={handleChange}
+              required
+              className="w-4 h-4 accent-brand-gold cursor-pointer" 
+            />
+            <label htmlFor="privacy" className="text-sm font-bold text-brand-primary cursor-pointer select-none">
+              개인정보수집 및 이용동의
+            </label>
+          </div>
+          <button 
+            type="button" 
+            onClick={() => setIsPrivacyOpen(!isPrivacyOpen)}
+            className="text-sm text-brand-muted underline hover:text-brand-primary"
+          >
+            보기
+          </button>
+        </div>
+        
+        {isPrivacyOpen && (
+          <div className="p-4 bg-gray-50 border border-brand-line rounded-xl text-xs text-brand-muted leading-relaxed space-y-1">
+            <p>1. 수집 항목: 이름, 연락처, 상담내용</p>
+            <p>2. 이용 목적: 이용자의 신청이 접수된 손해사정사와의 상담 연결 및 이력 관리</p>
+            <p>3. 보유 및 이용 기간: 상담 완료일로부터 3개월 후 파기 (단, 관련 법령에 따라 보관 가능)</p>
+            <p>4. 제3자 제공: 이용자의 신청이 접수된 손해사정사에게만 제공되며, 상담 목적 외 사용되지 않음</p>
+          </div>
+        )}
       </div>
 
       <div className="space-y-4 pt-4">
