@@ -150,12 +150,20 @@ export default function Page({ searchParams }: PageProps) {
         "name": "홈",
         "item": baseUrl
       },
-      ...(keyword ? [{
-        "@type": "ListItem",
-        "position": 2,
-        "name": keyword,
-        "item": `${baseUrl}/?k=${encodeURIComponent(k || '')}`
-      }] : [])
+      ...(keyword ? [
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "수도권 상담",
+          "item": `${baseUrl}/sitemap-seoul-gyeonggi`
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": keyword,
+          "item": `${baseUrl}/?k=${encodeURIComponent(keyword || '')}`
+        }
+      ] : [])
     ]
   };
 
