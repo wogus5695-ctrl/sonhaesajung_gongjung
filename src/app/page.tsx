@@ -45,15 +45,26 @@ export function generateMetadata({ searchParams }: PageProps): Metadata {
       },
     };
   }
+  let decodedK = "";
+  if (k) {
+    try {
+      decodedK = decodeURIComponent(k);
+      // Handle potential double-encoding
+      if (decodedK.includes('%')) {
+        decodedK = decodeURIComponent(decodedK);
+      }
+    } catch (e) {
+      decodedK = k;
+    }
+  }
 
-  const decodedK = decodeURIComponent(k);
   const keyword = decodedK.replace(/-/g, ' ').replace(/[<>]/g, '').trim();
   const type = classifyKeyword(keyword);
   const dki = getDKIContent(keyword, type);
 
   const title = keyword ? dki.metaTitle : baseTitle;
   const description = keyword ? dki.metaDesc : baseDesc;
-  const canonicalUrl = `${baseUrl}/?k=${encodeURIComponent(k)}`;
+  const canonicalUrl = `${baseUrl}/?k=${encodeURIComponent(keyword || '')}`;
 
   return {
     title,
@@ -88,8 +99,17 @@ export function generateMetadata({ searchParams }: PageProps): Metadata {
 export default function Page({ searchParams }: PageProps) {
   const baseUrl = "https://www.gongjungsh.co.kr";
   const k = searchParams.k;
-
-  const decodedK = k ? decodeURIComponent(k) : "";
+  let decodedK = "";
+  if (k) {
+    try {
+      decodedK = decodeURIComponent(k);
+      if (decodedK.includes('%')) {
+        decodedK = decodeURIComponent(decodedK);
+      }
+    } catch (e) {
+      decodedK = k;
+    }
+  }
   const keyword = decodedK.replace(/-/g, ' ').replace(/[<>]/g, '').trim();
   
   const serviceJsonLd = {
@@ -166,7 +186,7 @@ export default function Page({ searchParams }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      <MainPageContent k={searchParams.k} />
+      <MainPageContent k={keyword} />
     </>
   );
 }

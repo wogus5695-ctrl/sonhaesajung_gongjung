@@ -41,6 +41,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ko_KR",
     siteName: "공정손해사정",
+    url: "https://www.gongjungsh.co.kr",
     images: [
       {
         url: "https://www.gongjungsh.co.kr/og-image.png",

@@ -7,8 +7,18 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   const searchParams = useSearchParams();
   const k = searchParams.get('k');
-  const keyword = k ? k.replace(/-/g, ' ').replace(/[<>]/g, '').trim() : "";
-
+  let decodedK = "";
+  if (k) {
+    try {
+      decodedK = decodeURIComponent(k);
+      if (decodedK.includes('%')) {
+        decodedK = decodeURIComponent(decodedK);
+      }
+    } catch (e) {
+      decodedK = k;
+    }
+  }
+  const keyword = decodedK.replace(/-/g, ' ').replace(/[<>]/g, '').trim();
   return (
     <footer className="bg-brand-deep text-white/60 py-16 px-4">
       <div className="section-container">
