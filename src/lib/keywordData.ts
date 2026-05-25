@@ -471,7 +471,8 @@ export const basicServices = [
   "보험금 부지급",
   "후유장해 보험금",
   "산재 불승인",
-  "산재 장해등급"
+  "산재 장해등급",
+  "12대 과실"
 ];
 
 export const specializedRegions = [

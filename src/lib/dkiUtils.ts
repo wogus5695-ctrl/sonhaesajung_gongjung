@@ -29,7 +29,7 @@ export const classifyKeyword = (k: string): DKIType => {
   if (["후유장해", "진단서", "지급률", "평가", "분류표", "청구서류"].some(k => kw.includes(k))) return "disability";
 
   // 2. Traffic related (Check specific first, then general)
-  if (kw.includes("교통사고") || ["합의", "입원", "통원"].some(k => kw.includes(k))) {
+  if (kw.includes("교통사고") || ["합의", "입원", "통원", "12대 과실", "12대 중과실"].some(k => kw.includes(k))) {
     if (["골절", "인대파열", "신경손상", "흉터", "치아손상", "안면골절", "회전근개", "반월상연골"].some(k => kw.includes(k))) return "traffic_injury";
     return "traffic_settle";
   }
@@ -92,7 +92,7 @@ export const getDKIContent = (keyword: string, type: DKIType): DKIContent => {
 
     // Subtitle (heroSubtitle)
     let heroSubtitle = "";
-    if (service.includes("교통사고") || service.includes("합의금")) {
+    if (service.includes("교통사고") || service.includes("합의금") || service.includes("12대 과실") || service.includes("12대 중과실")) {
       heroSubtitle = `${matchedRegion} 지역의 교통사고 합의금, 후유장해, 과실비율, 향후치료비, 휴업손해 문제를 사고자료와 의무기록을 기준으로 검토합니다.`;
     } else if (service.includes("보험금") || service.includes("부지급") || service.includes("후유장해")) {
       heroSubtitle = `${matchedRegion} 지역의 보험금 부지급, 후유장해 보험금, 보험사 의료자문, 고지의무 위반 문제를 약관과 의무기록, 보험사 안내문을 기준으로 검토합니다.`;
