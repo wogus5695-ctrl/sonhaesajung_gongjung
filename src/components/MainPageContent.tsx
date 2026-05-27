@@ -107,7 +107,7 @@ export default function MainPageContent({ k }: { k?: string }) {
                 <span className="text-brand-primary">손해사정</span>부터 <span className="text-brand-primary">변호사</span> 협업까지 한번에!
               </span>
             </div>
-            <h1 className="text-[1.65rem] sm:text-3xl md:text-5xl lg:text-6xl font-black mb-8 break-keep text-white">
+            <h1 className="text-[1.65rem] sm:text-3xl md:text-5xl lg:text-6xl font-black mb-14 break-keep text-white">
               {hasKeyword ? (
                 <>
                   <span className="block mb-3 md:mb-5 text-brand-gold leading-tight">{dki.heroTitle}</span>
