@@ -60,7 +60,7 @@ const SectionTitle = ({ title, sub }: { title: string, sub?: string }) => (
   <div className="mb-12 md:mb-16 text-center">
     <div className="inline-block px-4 py-1.5 bg-brand-gold/10 text-brand-gold text-sm font-bold rounded-full mb-4">공정손해사정</div>
     <h2 className="text-3xl md:text-5xl font-black text-brand-primary mb-4 break-keep leading-[1.4] md:leading-[1.4]">{title}</h2>
-    {sub && <p className="text-brand-muted text-lg md:text-xl break-keep max-w-3xl mx-auto">{sub}</p>}
+    {sub && <p className="text-brand-muted text-lg md:text-xl break-keep max-w-3xl mx-auto" dangerouslySetInnerHTML={{ __html: sub }} />}
   </div>
 );
 
@@ -158,7 +158,7 @@ export default function MainPageContent({ k }: { k?: string }) {
         <div className="section-container">
           <SectionTitle 
             title="나의 상황에 맞는 정당한 보상 기준을 확인하세요" 
-            sub="손해사정사와 협업 변호사가 함께 분석하여, 대형 보험사를 상대로 정당한 보상 기준을 확실하게 찾아드립니다."
+            sub="<strong class='font-bold text-brand-primary underline decoration-brand-gold decoration-2 underline-offset-4'>손해사정사</strong>와 <strong class='font-bold text-brand-primary underline decoration-brand-gold decoration-2 underline-offset-4'>협업 변호사</strong>가 함께 분석하여, 대형 보험사를 상대로 정당한 보상 기준을 확실하게 찾아드립니다."
           />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {problemSituations.map((item, idx) => (
