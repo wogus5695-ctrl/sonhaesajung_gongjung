@@ -76,7 +76,14 @@ export const getDKIContent = (keyword: string, type: DKIType): DKIContent => {
   }
 
   if (matchedRegion) {
+    // If the next character in k is '구', '시', or '군', append it to matchedRegion
+    const nextChar = k.charAt(matchedRegion.length);
+    if (nextChar === '구' || nextChar === '시' || nextChar === '군') {
+      matchedRegion += nextChar;
+    }
+
     const service = k.substring(matchedRegion.length).trim();
+    const displayService = (service === "손해사정사" || service === "손해사정사 상담") ? "손해사정" : service;
     
     // H1 (heroTitle)
     let heroTitle = "";
@@ -99,7 +106,7 @@ export const getDKIContent = (keyword: string, type: DKIType): DKIContent => {
     } else if (service.includes("산재") || service.includes("직업병") || service.includes("폐암") || service.includes("장해등급") || service.includes("치료 종결") || service.includes("장해진단서")) {
       heroSubtitle = `손해사정사와 협업 변호사가 함께 대응하여, ${matchedRegion} 지역의 <strong class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">산재 불승인, 장해등급 재심사 문제를 자료 기준</strong>으로 명쾌하게 풀어냅니다.`;
     } else {
-      heroSubtitle = `손해사정사의 세밀한 분석과 협업 변호사의 법률 자문을 연계하여, ${matchedRegion} 지역의 ${service} 관련 <strong class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">보상 문제를 개별 사고 자료 기준</strong>으로 입증합니다.`;
+      heroSubtitle = `손해사정사의 세밀한 분석과 협업 변호사의 법률 자문을 연계하여, ${matchedRegion} 지역의 <strong class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${displayService} 관련 보상 문제를 개별 사고 자료 기준</strong>으로 입증합니다.`;
     }
 
     const ctaText = `${matchedRegion} ${service} 검토 신청`;
