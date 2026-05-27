@@ -115,7 +115,7 @@ export default function MainPageContent({ k }: { k?: string }) {
               ) : (
                 <>
                   <span className="block mb-3 md:mb-5 text-white">
-                    손해사정부터 <span className="text-brand-gold">변호사 협업</span>까지 한번에!
+                    <span className="text-brand-gold">손해사정사</span>와 <span className="text-brand-gold">변호사</span>를 한번에!
                   </span>
                   <span className="block mb-3 md:mb-5 text-white">보험사 제시 합의금,</span>
                   <span className="block text-white">
