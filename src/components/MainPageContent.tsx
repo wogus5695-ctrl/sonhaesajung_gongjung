@@ -110,7 +110,10 @@ export default function MainPageContent({ k }: { k?: string }) {
             <h1 className="text-[1.65rem] sm:text-3xl md:text-5xl lg:text-6xl font-black mb-14 break-keep text-white">
               {hasKeyword ? (
                 <>
-                  <span className="block mb-3 md:mb-5 text-brand-gold leading-tight">{dki.heroTitle}</span>
+                  <span 
+                    className="block mb-3 md:mb-5 leading-tight"
+                    dangerouslySetInnerHTML={{ __html: dki.heroTitle }}
+                  />
                 </>
               ) : (
                 <>
@@ -124,14 +127,10 @@ export default function MainPageContent({ k }: { k?: string }) {
                 </>
               )}
             </h1>
-            <p className="text-lg md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl whitespace-pre-line">
-              {hasKeyword ? dki.heroSubtitle : (
-                <>
-                  손해사정사의 정밀 분석과 협업 변호사의 법률 검토를 연계하여 {"\n"}
-                  <span className="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">합의금 산정부터 법적 분쟁 대비까지</span> 빈틈없이 조력합니다.
-                </>
-              )}
-            </p>
+            <p 
+              className="text-lg md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl whitespace-pre-line"
+              dangerouslySetInnerHTML={{ __html: hasKeyword ? dki.heroSubtitle : `손해사정사의 정밀 분석과 협업 변호사의 법률 검토를 연계하여 \n<span class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">합의금 산정부터 법적 분쟁 대비까지</span> 빈틈없이 조력합니다.` }}
+            />
             
             <div className="flex flex-col sm:flex-row gap-4 mb-16">
               <a href="#contact" className="btn-primary text-xl px-10 py-5 text-center shadow-2xl shadow-brand-gold/20 active:scale-95 transition-transform">

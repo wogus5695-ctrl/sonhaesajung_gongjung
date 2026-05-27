@@ -81,25 +81,25 @@ export const getDKIContent = (keyword: string, type: DKIType): DKIContent => {
     // H1 (heroTitle)
     let heroTitle = "";
     if (service === "손해사정사" || service === "손해사정사 상담") {
-      heroTitle = `${matchedRegion} ${service} 상담이 필요하신가요?`;
+      heroTitle = `<span class="text-white">${matchedRegion}</span> <span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${service}</span> <span class="text-white">상담이 필요하신가요?</span>`;
     } else if (service.includes("합의금") || service.includes("손해사정사")) {
-      heroTitle = `${matchedRegion} ${service} 검토가 필요하신가요?`;
+      heroTitle = `<span class="text-white">${matchedRegion}</span> <span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${service}</span> <span class="text-white">검토가 필요하신가요?</span>`;
     } else if (service.includes("불승인") || service.includes("부지급") || service.includes("장해등급") || service.includes("보험금") || service.includes("치료 종결") || service.includes("직업병") || service.includes("폐암") || service.includes("장해진단서")) {
-      heroTitle = `${matchedRegion} ${service} 관련 검토가 필요하신가요?`;
+      heroTitle = `<span class="text-white">${matchedRegion}</span> <span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${service}</span> <span class="text-white">관련 검토가 필요하신가요?</span>`;
     } else {
-      heroTitle = `${matchedRegion} ${service} 검토가 필요하신가요?`;
+      heroTitle = `<span class="text-white">${matchedRegion}</span> <span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${service}</span> <span class="text-white">검토가 필요하신가요?</span>`;
     }
 
     // Subtitle (heroSubtitle)
     let heroSubtitle = "";
     if (service.includes("교통사고") || service.includes("합의금") || service.includes("12대 과실") || service.includes("12대 중과실")) {
-      heroSubtitle = `손해사정사의 정밀 분석과 협업 변호사의 법률 검토를 연계하여, ${matchedRegion} 지역의 교통사고 합의금, 후유장해, 과실비율, 향후치료비 문제를 사고자료 기준으로 면밀히 분석합니다.`;
+      heroSubtitle = `손해사정사의 정밀 분석과 협업 변호사의 법률 검토를 연계하여, ${matchedRegion} 지역의 <strong class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">교통사고 합의금, 후유장해 문제를 사고자료 기준</strong>으로 면밀히 분석합니다.`;
     } else if (service.includes("보험금") || service.includes("부지급") || service.includes("후유장해")) {
-      heroSubtitle = `손해사정사 분석부터 변호사 공동 조력까지! ${matchedRegion} 지역의 보험금 부지급, 후유장해 보험금, 고지의무 위반 문제를 약관과 의무기록을 바탕으로 통합 검토합니다.`;
+      heroSubtitle = `손해사정사 분석부터 변호사 공동 조력까지! ${matchedRegion} 지역의 <strong class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">보험금 부지급, 후유장해 분쟁 문제를 약관과 의무기록</strong>을 바탕으로 통합 검토합니다.`;
     } else if (service.includes("산재") || service.includes("직업병") || service.includes("폐암") || service.includes("장해등급") || service.includes("치료 종결") || service.includes("장해진단서")) {
-      heroSubtitle = `손해사정사와 협업 변호사가 함께 대응하여, ${matchedRegion} 지역의 산재 불승인, 장해등급 재심사, 치료 종결 및 직업병 문제를 자료 기준으로 명쾌하게 풀어냅니다.`;
+      heroSubtitle = `손해사정사와 협업 변호사가 함께 대응하여, ${matchedRegion} 지역의 <strong class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">산재 불승인, 장해등급 재심사 문제를 자료 기준</strong>으로 명쾌하게 풀어냅니다.`;
     } else {
-      heroSubtitle = `손해사정사의 세밀한 분석과 협업 변호사의 법률 자문을 연계하여, ${matchedRegion} 지역의 ${service} 관련 보상 문제를 개별 사고 자료 기준으로 입증합니다.`;
+      heroSubtitle = `손해사정사의 세밀한 분석과 협업 변호사의 법률 자문을 연계하여, ${matchedRegion} 지역의 ${service} 관련 <strong class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">보상 문제를 개별 사고 자료 기준</strong>으로 입증합니다.`;
     }
 
     const ctaText = `${matchedRegion} ${service} 검토 신청`;
@@ -118,78 +118,78 @@ export const getDKIContent = (keyword: string, type: DKIType): DKIContent => {
 
   switch (type) {
     case "consulting":
-      heroTitle = `${k}을 알아보고 계신가요?`;
-      heroSubtitle = "손해사정 분석부터 변호사 협업 상담까지 한번에! 선임 전 검토 범위와 필요한 서류를 투명하게 안내해 드립니다.";
+      heroTitle = `<span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${k}</span> <span class="text-white">을 알아보고 계신가요?</span>`;
+      heroSubtitle = `손해사정 분석부터 변호사 협업 상담까지 한번에! 선임 전 <strong class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">검토 범위와 필요한 서류</strong>를 투명하게 안내해 드립니다.`;
       ctaText = "손해사정 상담 문의하기";
       metaTitle = `${k} 안내 및 상담 - ${brand}`;
       metaDesc = `${k} 관련 손해사정사 상담 및 선임 비용 구조를 사고 자료를 바탕으로 투명하게 안내해드립니다.`;
       break;
     case "traffic_settle":
-      heroTitle = `${k} 관련 손해액 검토가 필요하신가요?`;
-      heroSubtitle = "손해사정사의 정밀 분석과 협업 변호사의 법률 검토를 연계하여, 교통사고 합의 전후 적정 손해액을 확실하게 검증합니다.";
+      heroTitle = `<span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${k}</span> <span class="text-white"> 관련 손해액 검토가 필요하신가요?</span>`;
+      heroSubtitle = `손해사정사의 정밀 분석과 협업 변호사의 법률 검토를 연계하여, 교통사고 합의 전후 <strong class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">적정 손해액을 확실하게 검증</strong>합니다.`;
       ctaText = "교통사고 손해액 검토 신청";
       metaTitle = `${k} 관련 손해액 산정 및 상담 - ${brand}`;
       metaDesc = `${k} 관련 교통사고 합의금, 과실비율, 후유장해 가능성을 사고자료 기준으로 전문 검토해드립니다.`;
       break;
     case "traffic_injury":
-      heroTitle = `${k} 산정 기준이 궁금하신가요?`;
-      heroSubtitle = "손해사정사와 변호사가 함께하는 공동 지원으로, 부상 상태와 치료기록에 따른 정당한 보상 산정 기준을 제시합니다.";
+      heroTitle = `<span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${k}</span> <span class="text-white"> 산정 기준이 궁금하신가요?</span>`;
+      heroSubtitle = `손해사정사와 변호사가 함께하는 공동 지원으로, 부상 상태와 치료기록에 따른 <strong class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">정당한 보상 산정 기준</strong>을 제시합니다.`;
       ctaText = "부상별 손해액 검토 신청";
       metaTitle = `${k} 합의금 산정 기준 상담 - ${brand}`;
       metaDesc = `${k} 부상에 따른 교통사고 합의금 및 후유장해 가능성을 의학적 자료를 근거로 정밀 검토합니다.`;
       break;
     case "disability":
-      heroTitle = `${k} 관련 검토가 필요하신가요?`;
-      heroSubtitle = "약관 분석부터 법률 검토까지 한번에! 후유장해 보험금 장해평가 및 지급률의 적정성을 변호사 협업으로 세밀하게 진단합니다.";
+      heroTitle = `<span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${k}</span> <span class="text-white"> 관련 검토가 필요하신가요?</span>`;
+      heroSubtitle = `약관 분석부터 법률 검토까지 한번에! 후유장해 보험금 <strong class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">장해평가 및 지급률의 적정성</strong>을 변호사 협업으로 세밀하게 진단합니다.`;
       ctaText = "후유장해 검토 신청";
       metaTitle = `${k} 관련 후유장해 평가 상담 - ${brand}`;
       metaDesc = `${k} 관련 후유장해 보험금 산정 및 약관 기준 적용 여부를 의무기록을 바탕으로 전문 검토해드립니다.`;
       break;
     case "insurance_reject":
-      heroTitle = `${k} 문제로 확인이 필요하신가요?`;
-      heroSubtitle = "보험사 지급 거절 및 의료자문 과정에 대응하기 위해, 손해사정사와 협업 변호사가 공동 조력하여 입증 자료를 마련합니다.";
+      heroTitle = `<span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${k}</span> <span class="text-white"> 문제로 확인이 필요하신가요?</span>`;
+      heroSubtitle = `보험사 지급 거절 및 의료자문 과정에 대응하기 위해, 손해사정사와 협업 변호사가 <strong class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">공동 조력하여 입증 자료를 마련</strong>합니다.`;
       ctaText = "보험금 분쟁 검토 신청";
       metaTitle = `${k} 보험금 분쟁 및 부지급 대응 - ${brand}`;
       metaDesc = `${k} 관련 보험사의 부지급 사유 및 의료자문 결과가 약관상 타당한지 자료를 근거로 검토합니다.`;
       break;
     case "insurance_duty":
-      heroTitle = `${k} 관련 보험금 검토가 필요하신가요?`;
-      heroSubtitle = "고지의무 위반 및 보험 계약해지 통보에 직면했을 때, 가입 내역과 의무기록을 변호사 협업 공동 검토로 철저히 방어합니다.";
+      heroTitle = `<span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${k}</span> <span class="text-white"> 관련 보험금 검토가 필요하신가요?</span>`;
+      heroSubtitle = `고지의무 위반 및 보험 계약해지 통보에 직면했을 때, 가입 내역과 의무기록을 <strong class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">변호사 협업 공동 검토로 철저히 방어</strong>합니다.`;
       ctaText = "고지의무 분쟁 검토 신청";
       metaTitle = `${k} 고지의무 및 계약해지 상담 - ${brand}`;
       metaDesc = `${k} 관련 고지의무 위반 사유가 정당한지, 보험금 지급과의 인과관계를 의무기록 기준으로 분석합니다.`;
       break;
     case "cancer":
-      heroTitle = `${k} 지급 여부를 확인하고 계신가요?`;
-      heroSubtitle = "손해사정사의 의학자료 분석과 협업 변호사의 법률 검토로, 진단명 및 병리결과에 따른 정당한 암 진단비 지급 여부를 확인합니다.";
+      heroTitle = `<span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${k}</span> <span class="text-white"> 지급 여부를 확인하고 계신가요?</span>`;
+      heroSubtitle = `손해사정사의 의학자료 분석과 협업 변호사의 법률 검토로, 진단명 및 병리결과에 따른 <strong class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">정당한 암 진단비 지급 여부</strong>를 확인합니다.`;
       ctaText = "진단비 보험금 검토 신청";
       metaTitle = `${k} 암·진단비 보험금 검토 - ${brand}`;
       metaDesc = `${k} 관련 병리 조직 검사결과와 약관상 암 분류 기준을 대조하여 정당한 보험금 지급 여부를 확인합니다.`;
       break;
     case "industrial_apply":
-      heroTitle = `${k} 관련 산재 검토가 필요하신가요?`;
-      heroSubtitle = "산재 신청부터 불승인 시 소송 대비까지! 손해사정사 정밀 분석과 협업 변호사의 공동 지원으로 정당한 권리를 복원합니다.";
+      heroTitle = `<span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${k}</span> <span class="text-white"> 관련 산재 검토가 필요하신가요?</span>`;
+      heroSubtitle = `산재 신청부터 불승인 시 소송 대비까지! 손해사정사 정밀 분석과 협업 변호사의 <strong class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">공동 지원으로 정당한 권리를 복원</strong>합니다.`;
       ctaText = "산재 자료 검토 신청";
       metaTitle = `${k} 산재 신청 및 장해 상담 - ${brand}`;
       metaDesc = `${k} 관련 산재 불승인 대응 및 장해등급 재심사 청구 문제를 사고 자료를 근거로 전문 검토합니다.`;
       break;
     case "industrial_disease":
-      heroTitle = `${k} 인정 가능성을 검토하고 계신가요?`;
-      heroSubtitle = "업무상 질환 및 직업병의 인과관계 입증을 위해, 손해사정사와 협업 변호사가 함께 의무기록과 작업환경 자료를 검증합니다.";
+      heroTitle = `<span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${k}</span> <span class="text-white"> 인정 가능성을 검토하고 계신가요?</span>`;
+      heroSubtitle = `업무상 질환 및 직업병의 인과관계 입증을 위해, 손해사정사와 협업 변호사가 <strong class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">함께 의무기록과 작업환경 자료를 검증</strong>합니다.`;
       ctaText = "질환성 산재 검토 신청";
       metaTitle = `${k} 직업병 및 질환 산재 상담 - ${brand}`;
       metaDesc = `${k} 등 업무상 질환에 대한 업무관련성 입증 및 산재 승인 가능성을 자료 기준으로 분석해드립니다.`;
       break;
     case "industrial_delivery":
-      heroTitle = `${k} 관련 산재 상담이 필요하신가요?`;
-      heroSubtitle = "배달 및 특고직 산재의 사고 경위와 계약 형태를 변호사 협업 분석하여, 복잡한 업무상 재해 인정 절차를 확실하게 지원합니다.";
+      heroTitle = `<span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${k}</span> <span class="text-white"> 관련 산재 상담이 필요하신가요?</span>`;
+      heroSubtitle = `배달 및 특고직 산재의 사고 경위와 계약 형태를 변호사 협업 분석하여, <strong class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">복잡한 업무상 재해 인정 절차</strong>를 확실하게 지원합니다.`;
       ctaText = "운송·배달 산재 검토 신청";
       metaTitle = `${k} 배달·운송 특고직 산재 상담 - ${brand}`;
       metaDesc = `${k} 관련 산재 신청 및 보상 가능 여부를 사고 경위와 계약 형태를 분석하여 전문 검토해드립니다.`;
       break;
     default:
-      heroTitle = `${k} 정확한 검토와 산정`;
-      heroSubtitle = "손해사정사의 정밀 분석과 협업 변호사의 법률 검토를 연계하여, 정당한 손해액 산정을 객관적 자료 기준으로 조력합니다.";
+      heroTitle = `<span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${k}</span> <span class="text-white"> 정확한 검토와 산정</span>`;
+      heroSubtitle = `손해사정사의 정밀 분석과 협업 변호사의 법률 검토를 연계하여, <strong class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">정당한 손해액 산정을 객관적 자료 기준</strong>으로 조력합니다.`;
       ctaText = "무료 사건 검토 신청";
       metaTitle = `${k} 상담 - ${brand}`;
       metaDesc = `${k} 관련 손해액 산정 및 보험금 분쟁 문제를 자료 기준으로 정밀 검토해드립니다.`;
