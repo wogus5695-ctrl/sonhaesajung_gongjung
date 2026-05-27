@@ -135,7 +135,7 @@ export default function MainPageContent({ k }: { k?: string }) {
             
             <div className="flex flex-col sm:flex-row gap-4 mb-16">
               <a href="#contact" className="btn-primary text-xl px-10 py-5 text-center shadow-2xl shadow-brand-gold/20 active:scale-95 transition-transform">
-                {hasKeyword ? dki.ctaText : "사전 검토 상담"}
+                사전 검토 상담
               </a>
               <a href="tel:010-4875-4972" className="flex items-center justify-center gap-3 bg-white/10 backdrop-blur-md text-white border border-white/20 px-10 py-5 rounded-xl font-bold text-xl hover:bg-white/20 active:scale-95 transition-all">
                 <Phone className="w-6 h-6" /> 빠른 전화 상담
