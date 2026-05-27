@@ -103,8 +103,8 @@ export default function MainPageContent({ k }: { k?: string }) {
         <div className="section-container relative z-10">
           <div className="max-w-4xl animate-fade-up">
             <div className="mb-6">
-              <span className="inline-block bg-brand-gold text-white px-5 py-2 rounded-full font-bold tracking-widest text-sm md:text-base shadow-lg shadow-brand-gold/20">
-                손해사정부터 변호사 협업까지 한번에!
+              <span className="inline-block bg-brand-gold text-white px-6 py-2.5 rounded-full font-black tracking-widest text-lg md:text-2xl shadow-lg shadow-brand-gold/20">
+                {hasKeyword ? dki.heroTitle : "손해사정부터 변호사 협업까지 한번에!"}
               </span>
             </div>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-8 break-keep text-white">
