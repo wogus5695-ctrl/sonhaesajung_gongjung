@@ -11,13 +11,14 @@ interface PageProps {
 
 export function generateMetadata({ searchParams }: PageProps): Metadata {
   const baseUrl = "https://www.gongjungsh.co.kr";
-  const baseTitle = "공정손해사정 | 서울·경기 교통사고 산재 보험금 상담";
+  const baseTitle = "공정손해사정 | 서울·경기 교통사고 산재 보험금 상담 - 변호사 협업까지 한번에!";
   const baseDesc = "교통사고 합의금, 산재 불승인, 보험금 부지급 문제를 사고자료와 의학자료 기준으로 전문 검토하는 공정손해사정입니다.";
 
   const k = searchParams?.k;
 
   if (!k) {
     return {
+      metadataBase: new URL(baseUrl),
       title: baseTitle,
       description: baseDesc,
       alternates: {
@@ -30,7 +31,7 @@ export function generateMetadata({ searchParams }: PageProps): Metadata {
         url: baseUrl,
         images: [
           {
-            url: `${baseUrl}/og-image.png`,
+            url: `${baseUrl}/og-image.png?v=4`,
             width: 1200,
             height: 630,
             alt: "공정손해사정 전문가 상담",
@@ -41,7 +42,7 @@ export function generateMetadata({ searchParams }: PageProps): Metadata {
         card: "summary_large_image",
         title: baseTitle,
         description: baseDesc,
-        images: [`${baseUrl}/og-image.png`],
+        images: [`${baseUrl}/og-image.png?v=4`],
       },
     };
   }
@@ -67,6 +68,7 @@ export function generateMetadata({ searchParams }: PageProps): Metadata {
   const canonicalUrl = `${baseUrl}/?k=${encodeURIComponent(keyword || '')}`;
 
   return {
+    metadataBase: new URL(baseUrl),
     title,
     description,
     alternates: {
@@ -79,7 +81,7 @@ export function generateMetadata({ searchParams }: PageProps): Metadata {
       url: canonicalUrl,
       images: [
         {
-          url: `${baseUrl}/og-image.png`,
+          url: `${baseUrl}/og-image.png?v=4`,
           width: 1200,
           height: 630,
           alt: "공정손해사정 전문가 상담",
@@ -90,7 +92,7 @@ export function generateMetadata({ searchParams }: PageProps): Metadata {
       card: "summary_large_image",
       title,
       description,
-      images: [`${baseUrl}/og-image.png`],
+      images: [`${baseUrl}/og-image.png?v=4`],
     },
   };
 }

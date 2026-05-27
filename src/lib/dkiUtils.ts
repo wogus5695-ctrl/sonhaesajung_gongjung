@@ -76,13 +76,20 @@ export const getDKIContent = (keyword: string, type: DKIType): DKIContent => {
   }
 
   if (matchedRegion) {
-    // If the next character in k is '구', '시', or '군', append it to matchedRegion
-    const nextChar = k.charAt(matchedRegion.length);
-    if (nextChar === '구' || nextChar === '시' || nextChar === '군') {
-      matchedRegion += nextChar;
+    let matchEndIndex = matchedRegion.length;
+    let nextIndex = matchedRegion.length;
+    while (nextIndex < k.length && k.charAt(nextIndex) === ' ') {
+      nextIndex++;
+    }
+    if (nextIndex < k.length) {
+      const nextChar = k.charAt(nextIndex);
+      if (nextChar === '구' || nextChar === '시' || nextChar === '군') {
+        matchedRegion += nextChar;
+        matchEndIndex = nextIndex + 1;
+      }
     }
 
-    const service = k.substring(matchedRegion.length).trim();
+    const service = k.substring(matchEndIndex).trim();
     const displayService = (service === "손해사정사" || service === "손해사정사 상담") ? "손해사정" : service;
     
     // H1 (heroTitle)
@@ -203,7 +210,11 @@ export const getDKIContent = (keyword: string, type: DKIType): DKIContent => {
       break;
   }
 
-  return { type, heroTitle, heroSubtitle, ctaText, metaTitle, metaDesc };
+  const updatedMetaTitle = metaTitle.includes(` - ${brand}`) 
+    ? metaTitle.replace(` - ${brand}`, ` | 변호사 협업까지 한번에! - ${brand}`)
+    : `${metaTitle} | 변호사 협업까지 한번에!`;
+
+  return { type, heroTitle, heroSubtitle, ctaText, metaTitle: updatedMetaTitle, metaDesc };
 };
 
 export const getProblemSituationsByTheme = (type: DKIType) => {
