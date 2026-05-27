@@ -129,7 +129,7 @@ export default function MainPageContent({ k }: { k?: string }) {
             </h1>
             <p 
               className="text-lg md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl whitespace-pre-line"
-              dangerouslySetInnerHTML={{ __html: hasKeyword ? dki.heroSubtitle : `손해사정사의 정밀 분석과 협업 변호사의 법률 검토를 연계하여 \n<span class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">합의금 산정부터 법적 분쟁 대비까지</span> 빈틈없이 조력합니다.` }}
+              dangerouslySetInnerHTML={{ __html: hasKeyword ? dki.heroSubtitle : `<strong class="font-bold text-white">손해사정사</strong>의 정밀 분석과 <strong class="font-bold text-white">협업 변호사</strong>의 법률 검토를 연계하여 \n<span class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">합의금 산정부터 법적 분쟁 대비까지</span> 빈틈없이 조력합니다.` }}
             />
             
             <div className="flex flex-col sm:flex-row gap-4 mb-16">
