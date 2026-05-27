@@ -104,7 +104,7 @@ export default function MainPageContent({ k }: { k?: string }) {
           <div className="max-w-4xl animate-fade-up">
             <div className="mb-6">
               <span className="inline-block bg-brand-gold text-white px-5 py-2 rounded-full font-bold tracking-widest text-sm md:text-base shadow-lg shadow-brand-gold/20">
-                정당한 보상의 기준을 세우다
+                손해사정부터 변호사 협업까지 한번에!
               </span>
             </div>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-8 break-keep text-white">
@@ -114,19 +114,21 @@ export default function MainPageContent({ k }: { k?: string }) {
                 </>
               ) : (
                 <>
-                  <span className="block mb-3 md:mb-5 text-white">보험사 제시 합의금,</span>
-                  <span className="block mb-3 md:mb-5">
-                    <span className="text-brand-gold">객관적 검토</span> <span className="text-white">없이는</span>
+                  <span className="block mb-3 md:mb-5 text-white">
+                    손해사정부터 <span className="text-brand-gold">변호사 협업</span>까지 한번에!
                   </span>
-                  <span className="block text-white">서명하지 마십시오.</span>
+                  <span className="block mb-3 md:mb-5 text-white">보험사 제시 합의금,</span>
+                  <span className="block text-white">
+                    <span className="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">객관적 검토</span> 후 서명하십시오.
+                  </span>
                 </>
               )}
             </h1>
             <p className="text-lg md:text-2xl text-white/70 mb-12 leading-relaxed max-w-3xl whitespace-pre-line">
               {hasKeyword ? dki.heroSubtitle : (
                 <>
-                  보험금 산정 관련 손해액과 보험사의 산정 문제를 {"\n"}
-                  <span className="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">사고자료와 진단자료를 기준으로 검토</span>합니다.
+                  손해사정사의 정밀 분석과 협업 변호사의 법률 검토를 연계하여 {"\n"}
+                  <span className="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">합의금 산정부터 법적 분쟁 대비까지</span> 빈틈없이 조력합니다.
                 </>
               )}
             </p>
@@ -141,7 +143,7 @@ export default function MainPageContent({ k }: { k?: string }) {
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {["1:1 전담 배정", "의학자료 정밀 분석", hasKeyword ? `${keyword} 판례 기반 검토` : "판례 기반 검토", "서울·경기 방문 가능"].map((item, idx) => (
+              {["손해사정사X변호사 공동조력", "의학자료 정밀 분석", hasKeyword ? `${keyword} 판례 기반 검토` : "판례 기반 검토", "변호사 상담 연계 지원"].map((item, idx) => (
                 <div key={idx} className="flex items-center gap-2 text-white/80 font-medium text-sm md:text-base">
                   <ShieldCheck className="w-5 h-5 text-brand-gold" />
                   {item}
@@ -157,7 +159,7 @@ export default function MainPageContent({ k }: { k?: string }) {
         <div className="section-container">
           <SectionTitle 
             title="나의 상황에 맞는 정당한 보상 기준을 확인하세요" 
-            sub="객관적인 자료 검토가 정당한 보상의 시작입니다."
+            sub="손해사정사와 협업 변호사가 함께 분석하여, 대형 보험사를 상대로 정당한 보상 기준을 확실하게 찾아드립니다."
           />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {problemSituations.map((item, idx) => (
@@ -285,8 +287,8 @@ export default function MainPageContent({ k }: { k?: string }) {
                   },
                   { 
                     icon: Users, 
-                    title: "전문가 협업 시스템", 
-                    desc: <>필요한 경우 협업 변호사, 노무사, 전문의 등 관련 분야 전문가와 연계하여 <strong className="text-brand-primary">통합적인 검토 의견</strong>을 도출합니다.</> 
+                    title: "손해사정사 X 변호사 공동 조력", 
+                    desc: <>단순 손해액 산정을 넘어 법률 검토나 소송 대비가 필요할 경우, 연계된 협업 변호사의 법률 자문과 상담을 연계하여 <strong className="text-brand-primary">시작부터 법적 문제까지 한번에 대응</strong>해 드립니다.</> 
                   }
                 ].map((item, idx) => (
                   <div 
@@ -419,7 +421,7 @@ export default function MainPageContent({ k }: { k?: string }) {
                 지나가고 있습니다.
               </h2>
               <p className="text-white/60 text-lg md:text-xl mb-12 leading-relaxed break-keep">
-                복잡한 자료 준비와 전문적인 보험사 대응, 공정손해사정이 의뢰인의 든든한 파트너가 되어드리겠습니다.
+                복잡한 자료 준비부터 변호사 협업 자문까지 한번에! 손해사정사와 변호사의 공동 지원 시스템으로 의뢰인의 정당한 보상 권리를 든든히 지켜드립니다.
               </p>
               <div className="grid grid-cols-2 gap-4">
                  <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
