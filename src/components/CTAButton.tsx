@@ -13,7 +13,7 @@ export default function CTAButton({
   className, 
   variant = 'primary', 
   text = '무료 전화상담 신청',
-  phone = '010-4875-4972',
+  phone = '050-7871-3550',
   kakaoUrl = '#' // Placeholder
 }: CTAButtonProps) {
   if (variant === 'sticky') {
