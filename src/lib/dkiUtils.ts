@@ -132,7 +132,11 @@ export const getDKIContent = (keyword: string, type: DKIType): DKIContent => {
     }
     const mobileHeroTitle = `<span class="text-white">${matchedRegion}</span> <span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${appendCounselingSuffix(service, " 상담")}</span><br /><span class="text-white">${mobileHeroSubText}</span>`;
 
-    return { type, heroTitle, heroSubtitle, ctaText, metaTitle, metaDesc, pcHeroTitle, mobileHeroTitle };
+    const finalMetaDesc = keyword
+      ? `${appendCounselingSuffix(keyword, " 상담")}이 필요하다면 보험사 제시금, 교통사고 합의금, 산재 불승인, 보험금 부지급 문제를 사고자료·의무기록·약관 기준으로 검토하세요. 합의서 서명 전 무료 사전 검토를 안내합니다.`
+      : metaDesc;
+
+    return { type, heroTitle, heroSubtitle, ctaText, metaTitle, metaDesc: finalMetaDesc, pcHeroTitle, mobileHeroTitle };
   }
   
   let heroTitle = "";
@@ -237,7 +241,11 @@ export const getDKIContent = (keyword: string, type: DKIType): DKIContent => {
   }
   const mobileHeroTitle = `<span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${appendCounselingSuffix(k, " 상담")}</span><br /><span class="text-white">${mobileHeroSubText}</span>`;
 
-  return { type, heroTitle, heroSubtitle, ctaText, metaTitle: updatedMetaTitle, metaDesc, pcHeroTitle, mobileHeroTitle };
+  const finalMetaDesc = keyword
+    ? `${appendCounselingSuffix(keyword, " 상담")}이 필요하다면 보험사 제시금, 교통사고 합의금, 산재 불승인, 보험금 부지급 문제를 사고자료·의무기록·약관 기준으로 검토하세요. 합의서 서명 전 무료 사전 검토를 안내합니다.`
+    : metaDesc;
+
+  return { type, heroTitle, heroSubtitle, ctaText, metaTitle: updatedMetaTitle, metaDesc: finalMetaDesc, pcHeroTitle, mobileHeroTitle };
 };
 
 export const getProblemSituationsByTheme = (type: DKIType) => {

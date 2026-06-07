@@ -178,6 +178,15 @@ export default function MainPageContent({ k }: { k?: string }) {
             title="나의 상황에 맞는 정당한 보상 기준을 확인하세요" 
             sub="<strong class='font-bold text-brand-primary underline decoration-brand-gold decoration-2 underline-offset-4'>손해사정사</strong>와 <strong class='font-bold text-brand-primary underline decoration-brand-gold decoration-2 underline-offset-4'>협업 변호사</strong>가 함께 분석하여, 대형 보험사를 상대로 정당한 보상 기준을 확실하게 찾아드립니다."
           />
+
+          {hasKeyword && (
+            <div className="mb-10 p-5 md:p-6 bg-brand-ivory/60 border border-brand-line rounded-2xl max-w-3xl mx-auto text-center animate-fade-up">
+              <p className="text-sm md:text-base text-brand-primary leading-relaxed break-keep font-medium">
+                <strong className="text-brand-gold font-bold">{appendCounselingSuffix(keyword, " 상담")}</strong>을 찾는 분들은 대부분 보험사 제시금, 산재 불승인, 보험금 부지급처럼 이미 결과를 통보받은 뒤 적정성을 확인하려는 경우가 많습니다. 공정손해사정은 사고자료와 의무기록, 약관 내용을 기준으로 현재 보상 쟁점을 먼저 검토합니다.
+              </p>
+            </div>
+          )}
+
           <div className="grid gap-3 md:gap-6 md:grid-cols-2 lg:grid-cols-3">
             {problemSituations.map((item, idx) => (
               <div key={idx} className="card-premium p-4 md:p-8 flex flex-col items-center text-center group hover:-translate-y-1">
