@@ -234,6 +234,16 @@ export default function MainPageContent({ k }: { k?: string }) {
               </div>
             ))}
           </div>
+
+          {/* PC-only CTA Block */}
+          <div className="hidden md:flex flex-col items-center text-center mt-12 animate-fade-up">
+            <p className="text-lg text-brand-muted mb-6 max-w-2xl break-keep">
+              위 상황 중 하나라도 해당된다면, 보험사 안내나 결과 통보를 그대로 받아들이기 전에 먼저 검토를 받아보세요.
+            </p>
+            <a href="#contact" className="btn-primary text-xl px-10 py-5 shadow-xl shadow-brand-gold/20 active:scale-95 transition-transform">
+              내 사건 무료 검토 요청
+            </a>
+          </div>
         </div>
       </section>
 
