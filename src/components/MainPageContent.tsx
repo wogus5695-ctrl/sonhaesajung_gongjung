@@ -89,7 +89,7 @@ export default function MainPageContent({ k }: { k?: string }) {
   return (
     <div className="bg-white">
       {/* 2. Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-brand-deep text-white">
+      <section className="relative pt-28 pb-14 md:pt-48 md:pb-32 overflow-hidden bg-brand-deep text-white">
         <div className="absolute inset-0 opacity-40">
           <Image 
             src="/hero-bg.png" 
@@ -98,55 +98,58 @@ export default function MainPageContent({ k }: { k?: string }) {
             className="object-cover"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-deep/80 via-brand-deep/60 to-transparent" />
+        <div className="absolute inset-0 bg-brand-deep/80 md:bg-gradient-to-r md:from-brand-deep/80 md:via-brand-deep/60 md:to-transparent" />
         
-        {/* Mobile Hero Content - Completely Untouched layout & texts */}
+        {/* Mobile Hero Content - Optimized layout & texts */}
         <div className="section-container relative z-10 block md:hidden">
           <div className="max-w-4xl animate-fade-up">
-            <div className="mb-6">
-              <span className="inline-block bg-brand-gold text-white px-6 py-2.5 rounded-full font-black tracking-widest text-lg md:text-2xl shadow-lg shadow-brand-gold/20">
-                <span className="text-brand-primary">손해사정</span>부터 <span className="text-brand-primary">변호사</span> 협업까지 한번에!
+            <div className="mb-4">
+              <span className="inline-block bg-brand-gold text-white px-4 py-1.5 rounded-full font-black tracking-widest text-sm shadow-md">
+                손해사정부터 변호사 협업까지 한 번에
               </span>
             </div>
-            <h1 className="text-[1.65rem] sm:text-3xl md:text-5xl lg:text-6xl font-black mb-14 break-keep text-white">
+            <h1 className="text-2xl sm:text-3xl font-black mb-4 break-keep text-white leading-tight">
               {hasKeyword ? (
                 <>
                   <span 
-                    className="block mb-3 md:mb-5 leading-tight"
-                    dangerouslySetInnerHTML={{ __html: dki.heroTitle }}
+                    className="block leading-tight"
+                    dangerouslySetInnerHTML={{ __html: dki.mobileHeroTitle }}
                   />
                 </>
               ) : (
                 <>
-                  <span className="block mb-3 md:mb-5 text-white sm:whitespace-nowrap">
-                    <span className="text-brand-gold">손해사정사</span>와 <span className="text-brand-gold">변호사</span>를 한번에!
+                  <span className="block mb-2 text-white">
+                    <span className="text-brand-gold">손해사정사</span>·<span className="text-brand-gold">변호사</span> 협업 상담
                   </span>
-                  <span className="block mb-3 md:mb-5 text-white sm:whitespace-nowrap">보험사 제시 합의금,</span>
-                  <span className="block text-white sm:whitespace-nowrap">
-                    <span className="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">객관적 검토</span> 후 서명하십시오.
+                  <span className="block text-white leading-tight">
+                    합의 전, 먼저 확인하세요
                   </span>
                 </>
               )}
             </h1>
-            <p 
-              className="text-lg md:text-2xl text-white/70 mb-12 leading-loose max-w-3xl whitespace-pre-line"
-              dangerouslySetInnerHTML={{ __html: hasKeyword ? dki.heroSubtitle : `<strong class="font-bold text-white">손해사정사</strong>의 정밀 분석과 <strong class="font-bold text-white">협업 변호사</strong>의 법률 검토를 연계하여 \n<span class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">합의금 산정부터 법적 분쟁 대비까지</span> 빈틈없이 조력합니다.` }}
-            />
+            <p className="text-sm sm:text-base text-white/70 mb-6 leading-relaxed max-w-3xl whitespace-pre-line">
+              보험사 제시금·산재 불승인·보험금 거절은 자료 검토에 따라 결과가 달라질 수 있습니다.
+            </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 mb-16">
-              <a href="#contact" className="btn-primary text-xl px-10 py-5 text-center shadow-2xl shadow-brand-gold/20 active:scale-95 transition-transform">
-                사전 검토 상담
+            <div className="flex flex-col gap-3 mb-6">
+              <a href="#contact" className="btn-primary text-lg px-6 py-4 text-center shadow-xl active:scale-95 transition-transform">
+                무료 검토 신청
               </a>
-              <a href="tel:010-4875-4972" className="flex items-center justify-center gap-3 bg-white/10 backdrop-blur-md text-white border border-white/20 px-10 py-5 rounded-xl font-bold text-xl hover:bg-white/20 active:scale-95 transition-all">
-                <Phone className="w-6 h-6" /> 빠른 전화 상담
+              <a href="tel:010-4875-4972" className="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md text-white border border-white/20 px-6 py-4 rounded-xl font-bold text-lg hover:bg-white/20 active:scale-95 transition-all">
+                <Phone className="w-5 h-5 text-brand-gold" /> 지금 전화 상담
               </a>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {["손해사정사X변호사 공동조력", "의학자료 정밀 분석", hasKeyword ? `${keyword} 판례 기반 검토` : "판례 기반 검토", "변호사 상담 연계 지원"].map((item, idx) => (
-                <div key={idx} className="flex items-center gap-2 text-white/80 font-medium text-sm md:text-base">
-                  <ShieldCheck className="w-5 h-5 text-brand-gold" />
-                  {item}
+            <div className="grid grid-cols-2 gap-x-4 gap-y-3 mt-4 text-[13px] text-white/80 font-medium">
+              {[
+                "손해사정·변호사 공동조력", 
+                "의학자료 정밀 분석", 
+                hasKeyword ? `${keyword.replace(/상담$/, '').trim()} 판례 검토` : "판례 기반 검토", 
+                "변호사 협업 연계 지원"
+              ].map((item, idx) => (
+                <div key={idx} className="flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-brand-gold shrink-0" />
+                  <span className="truncate">{item}</span>
                 </div>
               ))}
             </div>
