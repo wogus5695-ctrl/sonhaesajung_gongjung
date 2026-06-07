@@ -221,14 +221,14 @@ export default function MainPageContent({ k }: { k?: string }) {
             title="나의 상황에 맞는 정당한 보상 기준을 확인하세요" 
             sub="<strong class='font-bold text-brand-primary underline decoration-brand-gold decoration-2 underline-offset-4'>손해사정사</strong>와 <strong class='font-bold text-brand-primary underline decoration-brand-gold decoration-2 underline-offset-4'>협업 변호사</strong>가 함께 분석하여, 대형 보험사를 상대로 정당한 보상 기준을 확실하게 찾아드립니다."
           />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid gap-3 md:gap-6 md:grid-cols-2 lg:grid-cols-3">
             {problemSituations.map((item, idx) => (
-              <div key={idx} className="card-premium flex flex-col items-center text-center group hover:-translate-y-1">
-                <div className="w-14 h-14 bg-brand-ivory rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-gold/10 transition-colors">
-                  <AlertCircle className="w-7 h-7 text-brand-gold" />
+              <div key={idx} className="card-premium p-5 md:p-8 flex flex-col items-center text-center group hover:-translate-y-1">
+                <div className="w-10 h-10 md:w-14 md:h-14 bg-brand-ivory rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:bg-brand-gold/10 transition-colors">
+                  <AlertCircle className="w-5 h-5 md:w-7 md:h-7 text-brand-gold" />
                 </div>
                 <p 
-                  className="text-xl font-bold text-brand-primary break-keep leading-relaxed [&_u]:text-brand-gold [&_u]:decoration-brand-gold/30 [&_u]:underline-offset-4"
+                  className="text-base md:text-xl font-bold text-brand-primary break-keep leading-relaxed [&_u]:text-brand-gold [&_u]:decoration-brand-gold/30 [&_u]:underline-offset-4"
                   dangerouslySetInnerHTML={{ __html: item.text }}
                 />
               </div>
@@ -242,6 +242,16 @@ export default function MainPageContent({ k }: { k?: string }) {
             </p>
             <a href="#contact" className="btn-primary text-xl px-10 py-5 shadow-xl shadow-brand-gold/20 active:scale-95 transition-transform">
               내 사건 무료 검토 요청
+            </a>
+          </div>
+
+          {/* Mobile-only CTA Block */}
+          <div className="flex md:hidden flex-col items-center text-center mt-8 px-4">
+            <p className="text-sm text-brand-muted mb-4 break-keep font-medium">
+              해당되는 상황이 있다면, 서명 전 먼저 확인해보세요.
+            </p>
+            <a href="#contact" className="btn-primary w-full text-lg py-4 shadow-lg active:scale-95 transition-transform">
+              무료 검토 신청하기
             </a>
           </div>
         </div>

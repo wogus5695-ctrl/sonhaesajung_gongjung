@@ -228,12 +228,12 @@ export const getDKIContent = (keyword: string, type: DKIType): DKIContent => {
 
 export const getProblemSituationsByTheme = (type: DKIType) => {
   const allSituations = [
-    { text: "보험사가 제시한 <u>교통사고 합의금이 적게</u> 느껴질 때", theme: "traffic" },
+    { text: "교통사고 <u>합의금이 적게</u> 느껴질 때", theme: "traffic" },
     { text: "12대 중과실 사고로 <u>과실비율 검토</u>가 필요할 때", theme: "traffic" },
-    { text: "오토바이 사고 후 <u>정당한 손해배상액 산정</u>이 필요할 때", theme: "traffic" },
-    { text: "근로복지공단으로부터 <u>산재 불승인</u>을 받았을 때", theme: "industrial" },
-    { text: "산재 장해등급이 <u>실제 상태보다 낮게</u> 나온 것 같을 때", theme: "industrial" },
-    { text: "질병·상해 보험금이 <u>정당한 사유 없이 거절</u>되었을 때", theme: "insurance" }
+    { text: "오토바이 사고 후 <u>손해배상액 산정</u>이 필요할 때", theme: "traffic" },
+    { text: "산재 <u>불승인 통보</u>를 받았을 때", theme: "industrial" },
+    { text: "산재 <u>장해등급이 낮게</u> 나온 것 같을 때", theme: "industrial" },
+    { text: "보험금이 <u>정당한 사유 없이 거절</u>되었을 때", theme: "insurance" }
   ];
 
   // Map DKIType to old DKITheme for compatibility with this function
