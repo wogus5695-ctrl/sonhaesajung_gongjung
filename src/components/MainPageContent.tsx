@@ -89,7 +89,7 @@ export default function MainPageContent({ k }: { k?: string }) {
   return (
     <div className="bg-white">
       {/* 2. Hero Section */}
-      <section className="relative pt-28 pb-14 md:pt-48 md:pb-32 overflow-hidden bg-brand-deep text-white">
+      <section className="relative pt-20 pb-8 md:pt-48 md:pb-32 overflow-hidden bg-brand-deep text-white">
         <div className="absolute inset-0 opacity-40">
           <Image 
             src="/hero-bg.png" 
@@ -103,12 +103,12 @@ export default function MainPageContent({ k }: { k?: string }) {
         {/* Mobile Hero Content - Optimized layout & texts */}
         <div className="section-container relative z-10 block md:hidden">
           <div className="max-w-4xl animate-fade-up">
-            <div className="mb-4">
+            <div className="mb-2 md:mb-4">
               <span className="inline-block bg-brand-gold text-white px-4 py-1.5 rounded-full font-black tracking-widest text-sm shadow-md">
                 손해사정부터 변호사 협업까지 한 번에
               </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-black mb-4 break-keep text-white leading-tight">
+            <h1 className="text-2xl sm:text-3xl font-black mb-2 md:mb-4 break-keep text-white leading-tight">
               {hasKeyword ? (
                 <>
                   <span 
@@ -122,16 +122,16 @@ export default function MainPageContent({ k }: { k?: string }) {
                     <span className="text-brand-gold">손해사정사</span>·<span className="text-brand-gold">변호사</span> 협업 상담
                   </span>
                   <span className="block text-white leading-tight">
-                    합의 전, 먼저 확인하세요
+                    합의 전 필수 확인, 서명 전 무료 검토
                   </span>
                 </>
               )}
             </h1>
-            <p className="text-sm sm:text-base text-white/70 mb-6 leading-relaxed max-w-3xl whitespace-pre-line">
+            <p className="text-sm sm:text-base text-white/70 mb-4 md:mb-6 leading-relaxed max-w-3xl whitespace-pre-line">
               보험사 제시금·산재 불승인·보험금 거절은 자료 검토에 따라 결과가 달라질 수 있습니다.
             </p>
             
-            <div className="flex flex-col gap-3 mb-6">
+            <div className="flex flex-col gap-3 mb-4 md:mb-6">
               <a href="#contact" className="btn-primary text-lg px-6 py-4 text-center shadow-xl active:scale-95 transition-transform">
                 무료 검토 신청
               </a>
@@ -215,7 +215,7 @@ export default function MainPageContent({ k }: { k?: string }) {
       </section>
 
       {/* 3. Problem Situation Section */}
-      <section className="section-py bg-white">
+      <section className="py-10 md:py-24 bg-white">
         <div className="section-container">
           <SectionTitle 
             title="나의 상황에 맞는 정당한 보상 기준을 확인하세요" 
@@ -223,12 +223,12 @@ export default function MainPageContent({ k }: { k?: string }) {
           />
           <div className="grid gap-3 md:gap-6 md:grid-cols-2 lg:grid-cols-3">
             {problemSituations.map((item, idx) => (
-              <div key={idx} className="card-premium p-5 md:p-8 flex flex-col items-center text-center group hover:-translate-y-1">
-                <div className="w-10 h-10 md:w-14 md:h-14 bg-brand-ivory rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:bg-brand-gold/10 transition-colors">
+              <div key={idx} className="card-premium p-4 md:p-8 flex flex-col items-center text-center group hover:-translate-y-1">
+                <div className="w-10 h-10 md:w-14 md:h-14 bg-brand-ivory rounded-xl md:rounded-2xl flex items-center justify-center mb-3 md:mb-6 group-hover:bg-brand-gold/10 transition-colors">
                   <AlertCircle className="w-5 h-5 md:w-7 md:h-7 text-brand-gold" />
                 </div>
                 <p 
-                  className="text-base md:text-xl font-bold text-brand-primary break-keep leading-relaxed [&_u]:text-brand-gold [&_u]:decoration-brand-gold/30 [&_u]:underline-offset-4"
+                  className="text-[15px] md:text-xl font-bold text-brand-primary break-keep leading-relaxed [&_u]:text-brand-gold [&_u]:decoration-brand-gold/30 [&_u]:underline-offset-4"
                   dangerouslySetInnerHTML={{ __html: item.text }}
                 />
               </div>
@@ -248,7 +248,7 @@ export default function MainPageContent({ k }: { k?: string }) {
           {/* Mobile-only CTA Block */}
           <div className="flex md:hidden flex-col items-center text-center mt-8 px-4">
             <p className="text-sm text-brand-muted mb-4 break-keep font-medium">
-              해당되는 상황이 있다면, 서명 전 먼저 확인해보세요.
+              나에게 해당하는 상황이 있으신가요? 서명하기 전 무료 검토를 신청하세요.
             </p>
             <a href="#contact" className="btn-primary w-full text-lg py-4 shadow-lg active:scale-95 transition-transform">
               무료 검토 신청하기
@@ -300,7 +300,7 @@ export default function MainPageContent({ k }: { k?: string }) {
       )}
 
       {/* 4. Key Services Section */}
-      <section id="traffic" className="section-py bg-brand-ivory">
+      <section id="traffic" className="py-10 md:py-24 bg-brand-ivory">
         <div className="section-container">
           <SectionTitle title="전문 분야별 핵심 검토 서비스" sub="보험사 출신 등 실무 경험을 바탕으로 사건의 핵심 쟁점을 파악합니다." />
           <div className="grid lg:grid-cols-3 gap-4 lg:gap-8">
@@ -322,8 +322,14 @@ export default function MainPageContent({ k }: { k?: string }) {
                   </div>
                 </div>
                 <div className="p-6 pt-0 md:p-8 md:pt-0">
-                  <a href="#contact" className="btn-primary w-full py-4 rounded-xl flex items-center justify-center gap-2">
-                    {service.title} 상담 <ArrowRight className="w-4 h-4" />
+                  <a href="#contact" className="btn-primary w-full py-4 rounded-xl flex items-center justify-center gap-2 text-center">
+                    <span className="hidden md:inline">{service.title} 상담</span>
+                    <span className="inline md:hidden">
+                      {idx === 0 && "교통사고 합의금 검토받기"}
+                      {idx === 1 && "산재 불승인·장해등급 검토"}
+                      {idx === 2 && "보험금 거절 사유 확인하기"}
+                    </span>
+                    <ArrowRight className="w-4 h-4 shrink-0" />
                   </a>
                 </div>
               </div>
@@ -337,7 +343,7 @@ export default function MainPageContent({ k }: { k?: string }) {
 
 
       {/* 5. Why Section */}
-      <section className="section-py bg-white">
+      <section className="py-10 md:py-24 bg-white">
         <div className="section-container">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-center">
             <div className="relative h-52 md:h-80 lg:h-full min-h-0 rounded-[2rem] lg:rounded-[3rem] overflow-hidden shadow-2xl">
@@ -391,7 +397,7 @@ export default function MainPageContent({ k }: { k?: string }) {
       </section>
 
       {/* 6. Process Section */}
-      <section id="process" className="section-py bg-brand-ivory">
+      <section id="process" className="py-10 md:py-24 bg-brand-ivory">
         <div className="section-container">
           <SectionTitle title="투명한 업무 절차" sub="의뢰인이 안심할 수 있도록 전 과정을 체계적으로 공유합니다." />
           
@@ -429,13 +435,13 @@ export default function MainPageContent({ k }: { k?: string }) {
       </section>
 
       {/* 7. FAQ Section */}
-      <section id="faq" className="section-py bg-brand-ivory">
+      <section id="faq" className="py-10 md:py-24 bg-brand-ivory">
         <div className="section-container max-w-4xl">
           <SectionTitle 
             title="자주 묻는 질문 (FAQ)" 
             sub="교통사고, 산재, 보험금 분쟁은 사건마다 쟁점이 다릅니다. 상담 전 자주 궁금해하시는 내용을 먼저 확인해보세요."
           />
-          <div className="space-y-4 mb-20">
+          <div className="space-y-4 mb-12">
             {commonFaqs.map((faq, idx) => (
               <div key={idx} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-brand-line/50 hover:border-brand-gold/30 transition-all group">
                 <button 
@@ -483,12 +489,20 @@ export default function MainPageContent({ k }: { k?: string }) {
             ))}
           </div>
 
-
+          {/* FAQ Bottom CTA */}
+          <div className="flex flex-col items-center text-center mt-12 animate-fade-up">
+            <p className="text-base md:text-lg text-brand-muted mb-4 md:mb-6 max-w-2xl break-keep">
+              내 상황에 맞는 맞춤형 검토가 필요하신가요?
+            </p>
+            <a href="#contact" className="btn-primary text-lg md:text-xl px-8 py-4 md:px-10 md:py-5 shadow-xl shadow-brand-gold/10 active:scale-95 transition-transform">
+              무료 검토 신청하기
+            </a>
+          </div>
         </div>
       </section>
 
       {/* 9. Contact Section */}
-      <section id="contact" className="section-py bg-brand-primary text-white overflow-hidden relative">
+      <section id="contact" className="py-10 md:py-24 bg-brand-primary text-white overflow-hidden relative">
         <div className="absolute top-0 left-0 w-full h-full opacity-10">
            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-gold via-transparent to-transparent scale-150" />
         </div>
@@ -515,7 +529,10 @@ export default function MainPageContent({ k }: { k?: string }) {
               </div>
             </div>
             <div className="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-2xl text-brand-primary">
-              <h3 className="text-2xl font-black mb-8 text-center">무료 검토 신청서</h3>
+              <h3 className="text-2xl font-black mb-3 md:mb-4 text-center">무료 검토 신청서</h3>
+              <p className="text-brand-muted text-xs md:text-sm text-center mb-8 break-keep leading-relaxed">
+                💡 자료가 부족해도 괜찮습니다. 현재 상황을 남겨주시면 필요한 자료부터 친절히 안내해 드립니다.
+              </p>
               <ContactForm keyword={keyword} />
               <p className="mt-8 text-[10px] text-brand-muted leading-relaxed text-center break-keep">
                 공정손해사정은 손해액 산정, 보험금 검토, 사고자료 및 의학자료 분석을 중심으로 상담을 진행합니다. 

@@ -1,3 +1,5 @@
+"use client";
+import React, { useState, useEffect } from 'react';
 import { Phone, FileText } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -16,9 +18,39 @@ export default function CTAButton({
   phone = '010-4875-4972',
   kakaoUrl = '#' // Placeholder
 }: CTAButtonProps) {
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    if (variant !== 'sticky') return;
+
+    const handleScroll = () => {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        const rect = contactSection.getBoundingClientRect();
+        // Hide if the contact section top is near the viewport bottom
+        if (rect.top < window.innerHeight - 50) {
+          setIsVisible(false);
+        } else {
+          setIsVisible(true);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Initial check
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [variant]);
+
   if (variant === 'sticky') {
     return (
-      <div className="fixed bottom-0 left-0 z-50 w-full flex bg-white border-t border-brand-line md:hidden animate-fade-up shadow-[0_-10px_20px_rgba(0,0,0,0.05)]">
+      <div 
+        className={cn(
+          "fixed bottom-0 left-0 z-50 w-full flex bg-white border-t border-brand-line md:hidden shadow-[0_-10px_20px_rgba(0,0,0,0.05)] transition-all duration-300",
+          isVisible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"
+        )}
+      >
         <a 
           href={`tel:${phone}`}
           className="flex-1 flex flex-col items-center justify-center gap-1 py-4 bg-white text-brand-primary active:bg-brand-ivory transition-colors border-r border-brand-line"

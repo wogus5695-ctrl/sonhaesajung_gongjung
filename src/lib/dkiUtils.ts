@@ -123,7 +123,14 @@ export const getDKIContent = (keyword: string, type: DKIType): DKIContent => {
     const metaTitle = `${matchedRegion} ${appendCounselingSuffix(service, " 상담")} - ${brand}`;
     const metaDesc = `${matchedRegion} 지역에서 ${service} 문제로 손해사정 상담을 찾으신다면, ${brand}에서 사고 자료와 객관적 기준을 바탕으로 세밀하게 검토해 드립니다.`;
     const pcHeroTitle = `<span class="text-white">${matchedRegion}</span> <span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${appendCounselingSuffix(service, " 상담")}</span><span class="text-white">,</span><br /><span class="text-white">보험사 제시금 그대로 서명하기 전 확인하세요</span>`;
-    const mobileHeroTitle = `<span class="text-white">${matchedRegion}</span> <span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${appendCounselingSuffix(service, " 상담")}</span><br /><span class="text-white">합의 전, 먼저 확인하세요</span>`;
+    
+    let mobileHeroSubText = "합의 전 필수 확인";
+    if (service.includes("산재") || service.includes("질환") || service.includes("직업병") || service.includes("근로")) {
+      mobileHeroSubText = "서명 전 무료 검토";
+    } else if (service.includes("보험금") || service.includes("부지급") || service.includes("거절") || service.includes("진단비") || service.includes("암")) {
+      mobileHeroSubText = "보험사 제시금 검토";
+    }
+    const mobileHeroTitle = `<span class="text-white">${matchedRegion}</span> <span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${appendCounselingSuffix(service, " 상담")}</span><br /><span class="text-white">${mobileHeroSubText}</span>`;
 
     return { type, heroTitle, heroSubtitle, ctaText, metaTitle, metaDesc, pcHeroTitle, mobileHeroTitle };
   }
@@ -221,7 +228,14 @@ export const getDKIContent = (keyword: string, type: DKIType): DKIContent => {
     : `${metaTitle} | 변호사 협업까지 한번에!`;
 
   const pcHeroTitle = `<span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${appendCounselingSuffix(k, " 상담")}</span><span class="text-white">,</span><br /><span class="text-white">보험사 제시금 그대로 서명하기 전 확인하세요</span>`;
-  const mobileHeroTitle = `<span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${appendCounselingSuffix(k, " 상담")}</span><br /><span class="text-white">합의 전, 먼저 확인하세요</span>`;
+  
+  let mobileHeroSubText = "합의 전 필수 확인";
+  if (type.startsWith("industrial")) {
+    mobileHeroSubText = "서명 전 무료 검토";
+  } else if (type.startsWith("insurance") || type === "cancer" || type === "disability") {
+    mobileHeroSubText = "보험사 제시금 검토";
+  }
+  const mobileHeroTitle = `<span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${appendCounselingSuffix(k, " 상담")}</span><br /><span class="text-white">${mobileHeroSubText}</span>`;
 
   return { type, heroTitle, heroSubtitle, ctaText, metaTitle: updatedMetaTitle, metaDesc, pcHeroTitle, mobileHeroTitle };
 };

@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, FileText, CheckCircle2, ArrowRight, Quote } from 'lucide-react';
 import { caseStudies } from '@/lib/caseData';
 import { cn } from '@/lib/utils';
@@ -9,6 +9,7 @@ import { classifyKeyword } from '@/lib/dkiUtils';
 
 export default function CaseSection({ keyword }: { keyword?: string }) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [showAllCases, setShowAllCases] = useState(false);
   
   const theme = classifyKeyword(keyword || "");
 
@@ -98,10 +99,10 @@ export default function CaseSection({ keyword }: { keyword?: string }) {
           </div>
         </div>
 
-        {/* Scrollable Container */}
+        {/* Scrollable Container (PC/Tablet) */}
         <div 
           ref={scrollRef}
-          className="flex gap-6 overflow-x-auto pb-12 snap-x snap-mandatory no-scrollbar"
+          className="hidden md:flex gap-6 overflow-x-auto pb-12 snap-x snap-mandatory no-scrollbar"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {sortedCases.map((item) => (
@@ -158,7 +159,7 @@ export default function CaseSection({ keyword }: { keyword?: string }) {
                 <div className="mt-6 pt-5 border-t border-brand-line/30 flex items-center justify-between">
                   <span className="text-xs text-brand-muted font-bold">유사한 상황이신가요?</span>
                   <a href="#contact" className="inline-flex items-center gap-1 text-xs font-black text-brand-gold hover:underline">
-                    무료 검토 받기 <ChevronRight className="w-3.5 h-3.5" />
+                    비슷한 상황 검토받기 <ChevronRight className="w-3.5 h-3.5" />
                   </a>
                 </div>
               </div>
@@ -167,11 +168,82 @@ export default function CaseSection({ keyword }: { keyword?: string }) {
           ))}
         </div>
 
-        {/* Mobile Swipe Cue */}
-        <div className="flex items-center justify-center gap-2 mt-2 mb-6 md:hidden text-white/50 text-xs font-medium">
-          <span>옆으로 넘겨보세요</span>
-          <ArrowRight className="w-3.5 h-3.5 animate-pulse" />
+        {/* Mobile Vertical Case List */}
+        <div className="flex flex-col gap-6 md:hidden">
+          {(showAllCases ? sortedCases : sortedCases.slice(0, 2)).map((item) => (
+            <div 
+              key={item.id} 
+              className="w-full snap-start"
+            >
+              <div className="bg-white/95 backdrop-blur-md rounded-[2rem] p-6 text-brand-primary flex flex-col shadow-xl border border-white/40">
+                <div className="flex justify-between items-center mb-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-4 bg-brand-gold rounded-full" />
+                    <span className="text-brand-gold font-black text-sm tracking-widest">{item.category}</span>
+                  </div>
+                  <FileText className="w-5 h-5 text-brand-primary/20" />
+                </div>
+
+                <h3 className="text-lg font-black mb-4 break-keep leading-snug">
+                  {item.title}
+                </h3>
+
+                {/* Situation (Quote style) */}
+                <div className="relative bg-brand-primary/5 rounded-xl p-4 mb-4">
+                  <Quote className="absolute top-3 right-3 w-6 h-6 text-brand-primary/10 rotate-180" />
+                  <p className="text-brand-primary font-bold text-xs mb-1">상황 요약</p>
+                  <p className="text-brand-muted text-xs leading-relaxed break-keep relative z-10 font-medium">
+                    "{item.situation}"
+                  </p>
+                </div>
+
+                {/* Key Issues (Tags) */}
+                <div className="mb-4">
+                  <p className="text-[10px] font-black text-brand-primary/40 uppercase tracking-widest mb-2">주요 검토 쟁점</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {item.keyIssues.map((issue, idx) => (
+                      <span key={idx} className="px-2.5 py-1 bg-white border border-brand-line/50 rounded-lg text-[10px] font-bold text-brand-primary shadow-sm">
+                        #{issue}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Direction (Highlighted Solution Box) */}
+                <div className="bg-brand-gold/10 rounded-xl p-4 border border-brand-gold/20 relative overflow-hidden">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-brand-gold" />
+                    <p className="text-xs font-black text-brand-primary">공정손해사정의 솔루션</p>
+                  </div>
+                  <p className="text-xs text-brand-primary/80 leading-relaxed break-keep font-medium">
+                    {item.direction}
+                  </p>
+                </div>
+
+                {/* Mini CTA inside card */}
+                <div className="mt-4 pt-4 border-t border-brand-line/30 flex items-center justify-between">
+                  <span className="text-[11px] text-brand-muted font-bold">비슷한 상황이신가요?</span>
+                  <a href="#contact" className="inline-flex items-center gap-1 text-[11px] font-black text-brand-gold hover:underline">
+                    비슷한 상황 검토받기 <ChevronRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
+
+        {/* Show More Button for Mobile */}
+        {sortedCases.length > 2 && (
+          <div className="flex justify-center mt-6 md:hidden">
+            <button 
+              onClick={() => setShowAllCases(!showAllCases)}
+              className="px-6 py-3 border border-white/20 text-white font-bold text-sm rounded-xl hover:bg-white/10 active:scale-95 flex items-center gap-2"
+            >
+              {showAllCases ? "사례 접기" : "사례 더보기"}
+              <ChevronRight className={cn("w-4 h-4 transition-transform duration-300", showAllCases ? "-rotate-90" : "rotate-90")} />
+            </button>
+          </div>
+        )}
 
         <p className="mt-8 text-[11px] text-white/30 leading-relaxed text-center break-keep max-w-4xl mx-auto">
           ※ 위 내용은 이해를 돕기 위한 {keyword ? `${keyword} 관련 ` : ""}대표 상담 예시이며, 실제 사건 결과를 보장하지 않습니다. 

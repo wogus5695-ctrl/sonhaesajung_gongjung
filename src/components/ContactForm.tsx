@@ -223,14 +223,14 @@ export default function ContactForm({ keyword }: { keyword?: string }) {
             isSubmitting ? "bg-brand-muted cursor-not-allowed" : "bg-brand-primary hover:bg-brand-deep"
           )}
         >
-          {isSubmitting ? "전송 중..." : "사전 검토 상담 신청하기"}
+          {isSubmitting ? "전송 중..." : "무료 검토 신청하기"}
         </button>
 
         <a 
           href="tel:010-4875-4972" 
           className="flex items-center justify-center gap-2 w-full py-5 border-2 border-brand-primary text-brand-primary font-black text-xl rounded-2xl hover:bg-brand-primary/5 transition-all active:scale-95"
         >
-          <Phone className="w-5 h-5" /> 빠른 전화 상담
+          <Phone className="w-5 h-5" /> 지금 전화 상담하기
         </a>
       </div>
     </form>
