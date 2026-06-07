@@ -114,8 +114,9 @@ export default function MainPageContent({ k }: { k?: string }) {
                   <span className="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-4 md:underline-offset-8 font-bold">
                     {appendCounselingSuffix(keyword, " 상담")}
                   </span>
-                  <span className="text-white">, </span>
-                  <span className="block md:inline text-white">합의 전 필수 확인</span>
+                  <span className="text-white">,</span>
+                  <span className="block md:hidden text-white mt-1">합의 전 필수 확인</span>
+                  <span className="hidden md:block text-white mt-2">합의 전 필수 확인!</span>
                 </>
               ) : (
                 <>
