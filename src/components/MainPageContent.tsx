@@ -16,7 +16,7 @@ import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import ContactForm from '@/components/ContactForm';
 import CTAButton from '@/components/CTAButton';
-import { classifyKeyword, getDKIContent, getProblemSituationsByTheme } from '@/lib/dkiUtils';
+import { classifyKeyword, getDKIContent, getProblemSituationsByTheme, appendCounselingSuffix } from '@/lib/dkiUtils';
 import CaseSection from '@/components/CaseSection';
 import { commonFaqs } from '@/lib/faqData';
 import { getExpertContent } from '@/lib/expertContent';
@@ -100,113 +100,70 @@ export default function MainPageContent({ k }: { k?: string }) {
         </div>
         <div className="absolute inset-0 bg-brand-deep/80 md:bg-gradient-to-r md:from-brand-deep/80 md:via-brand-deep/60 md:to-transparent" />
         
-        {/* Mobile Hero Content - Optimized layout & texts */}
-        <div className="section-container relative z-10 block md:hidden">
+        <div className="section-container relative z-10">
           <div className="max-w-4xl animate-fade-up">
-            <div className="mb-2 md:mb-4">
-              <span className="inline-block bg-brand-gold text-white px-4 py-1.5 rounded-full font-black tracking-widest text-sm shadow-md">
+            <div className="mb-4 md:mb-6">
+              <span className="inline-block bg-brand-gold text-white px-4 py-1.5 md:px-6 md:py-2.5 rounded-full font-black tracking-widest text-sm md:text-lg lg:text-xl shadow-lg shadow-brand-gold/20">
                 손해사정부터 변호사 협업까지 한 번에
               </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-black mb-2 md:mb-4 break-keep text-white leading-tight">
+
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black mb-4 md:mb-12 break-keep text-white leading-tight">
               {hasKeyword ? (
                 <>
-                  <span 
-                    className="block leading-tight"
-                    dangerouslySetInnerHTML={{ __html: dki.mobileHeroTitle }}
-                  />
+                  <span className="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-4 md:underline-offset-8 font-bold">
+                    {appendCounselingSuffix(keyword, " 상담")}
+                  </span>
+                  <span className="text-white">, </span>
+                  <span className="block md:inline text-white">합의 전 필수 확인</span>
                 </>
               ) : (
                 <>
-                  <span className="block mb-2 text-white">
-                    <span className="text-brand-gold">손해사정사</span>·<span className="text-brand-gold">변호사</span> 협업 상담
-                  </span>
-                  <span className="block text-white leading-tight">
-                    합의 전 필수 확인, 서명 전 무료 검토
-                  </span>
-                </>
-              )}
-            </h1>
-            <p className="text-sm sm:text-base text-white/70 mb-4 md:mb-6 leading-relaxed max-w-3xl whitespace-pre-line">
-              보험사 제시금·산재 불승인·보험금 거절은 자료 검토에 따라 결과가 달라질 수 있습니다.
-            </p>
-            
-            <div className="flex flex-col gap-3 mb-4 md:mb-6">
-              <a href="#contact" className="btn-primary text-lg px-6 py-4 text-center shadow-xl active:scale-95 transition-transform">
-                무료 검토 신청
-              </a>
-              <a href="tel:010-4875-4972" className="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md text-white border border-white/20 px-6 py-4 rounded-xl font-bold text-lg hover:bg-white/20 active:scale-95 transition-all">
-                <Phone className="w-5 h-5 text-brand-gold" /> 지금 전화 상담
-              </a>
-            </div>
-
-            <div className="grid grid-cols-2 gap-x-4 gap-y-3 mt-4 text-[13px] text-white/80 font-medium">
-              {[
-                "손해사정·변호사 공동조력", 
-                "의학자료 정밀 분석", 
-                hasKeyword ? `${keyword.replace(/상담$/, '').trim()} 판례 검토` : "판례 기반 검토", 
-                "변호사 협업 연계 지원"
-              ].map((item, idx) => (
-                <div key={idx} className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-brand-gold shrink-0" />
-                  <span className="truncate">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* PC Hero Content - Optimized layout & text */}
-        <div className="section-container relative z-10 hidden md:block">
-          <div className="max-w-4xl animate-fade-up">
-            <div className="mb-6">
-              <span className="inline-block bg-brand-gold text-white px-6 py-2.5 rounded-full font-black tracking-widest text-lg md:text-2xl shadow-lg shadow-brand-gold/20">
-                손해사정부터 변호사 협업까지 한 번에
-              </span>
-            </div>
-            <h1 className="text-[1.65rem] sm:text-3xl md:text-5xl lg:text-6xl font-black mb-14 break-keep text-white leading-tight">
-              {hasKeyword ? (
-                <>
-                  <span 
-                    className="block leading-tight"
-                    dangerouslySetInnerHTML={{ __html: dki.pcHeroTitle }}
-                  />
-                </>
-              ) : (
-                <>
-                  <span className="block mb-4 text-white">
+                  <span className="block md:inline text-white">
                     <span className="text-brand-gold">손해사정사</span>와 <span className="text-brand-gold">변호사</span> 협업 상담,
                   </span>
-                  <span className="block text-white leading-tight">
-                    보험사 제시금 그대로 서명하기 전 확인하세요
+                  <span className="block md:inline text-white md:ml-2">
+                    합의 전 필수 확인
                   </span>
                 </>
               )}
             </h1>
-            <p className="text-lg md:text-2xl text-white/70 mb-12 leading-loose max-w-3xl whitespace-pre-line">
-              교통사고 합의금, 산재 불승인, 보험금 부지급은 사고자료·의무기록·약관 해석에 따라 결과가 달라질 수 있습니다.{"\n"}
-              공정손해사정은 손해사정사 검토와 변호사 협업을 통해 보상 쟁점을 먼저 확인합니다.
+
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/70 mb-6 md:mb-12 leading-relaxed md:leading-loose max-w-3xl whitespace-pre-line font-medium">
+              보험사 제시금 그대로 서명하기 전, 사고자료·의무기록·약관 기준으로 보상 쟁점을 확인하세요.
             </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 mb-16">
-              <a href="#contact" className="btn-primary text-xl px-10 py-5 text-center shadow-2xl shadow-brand-gold/20 active:scale-95 transition-transform">
+
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-8 md:mb-16">
+              <a 
+                href="#contact" 
+                className="btn-primary text-lg md:text-xl px-6 py-4 md:px-10 md:py-5 text-center shadow-2xl shadow-brand-gold/20 active:scale-95 transition-transform"
+              >
                 무료 검토 신청
               </a>
-              <a href="tel:010-4875-4972" className="flex items-center justify-center gap-3 bg-white/10 backdrop-blur-md text-white border border-white/20 px-10 py-5 rounded-xl font-bold text-xl hover:bg-white/20 active:scale-95 transition-all">
-                <Phone className="w-6 h-6" /> 지금 전화 상담
+              <a 
+                href="tel:010-4875-4972" 
+                className="flex items-center justify-center gap-2 md:gap-3 bg-white/10 backdrop-blur-md text-white border border-white/20 px-6 py-4 md:px-10 md:py-5 rounded-xl font-bold text-lg md:text-xl hover:bg-white/20 active:scale-95 transition-all"
+              >
+                <Phone className="w-5 h-5 md:w-6 md:h-6 text-brand-gold md:text-white" /> 지금 전화 상담
               </a>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-[13px] md:text-[15px] lg:text-base text-white/80 font-medium">
               {[
-                "손해사정사·변호사 공동조력", 
-                "의학자료 정밀 분석", 
-                hasKeyword ? `${keyword.replace(/상담$/, '').trim()} 판례 검토` : "판례 기반 검토", 
-                "변호사 협업 연계 지원"
+                { pc: "손해사정사·변호사 공동조력", mobile: "손해사정·변호사 공동조력" },
+                { pc: "의학자료 정밀 분석", mobile: "의학자료 정밀 분석" },
+                { 
+                  pc: hasKeyword ? `${keyword.replace(/상담$/, '').trim()} 판례 검토` : "판례 기반 검토",
+                  mobile: hasKeyword ? `${keyword.replace(/상담$/, '').trim()} 판례 검토` : "판례 기반 검토"
+                },
+                { pc: "변호사 협업 연계 지원", mobile: "변호사 협업 연계 지원" }
               ].map((item, idx) => (
-                <div key={idx} className="flex items-center gap-2 text-white/80 font-medium text-[15px] lg:text-base">
-                  <ShieldCheck className="w-5 h-5 text-brand-gold" />
-                  {item}
+                <div key={idx} className="flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 md:w-5 md:h-5 text-brand-gold shrink-0" />
+                  <span className="truncate">
+                    <span className="hidden md:inline">{item.pc}</span>
+                    <span className="inline md:hidden">{item.mobile}</span>
+                  </span>
                 </div>
               ))}
             </div>
