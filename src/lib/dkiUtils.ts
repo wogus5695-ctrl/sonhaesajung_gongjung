@@ -18,6 +18,7 @@ export interface DKIContent {
   ctaText: string;
   metaTitle: string;
   metaDesc: string;
+  pcHeroTitle: string;
 }
 
 export const classifyKeyword = (k: string): DKIType => {
@@ -120,8 +121,9 @@ export const getDKIContent = (keyword: string, type: DKIType): DKIContent => {
     const ctaText = `${matchedRegion} ${service} 검토 신청`;
     const metaTitle = `${matchedRegion} ${appendCounselingSuffix(service, " 상담")} - ${brand}`;
     const metaDesc = `${matchedRegion} 지역에서 ${service} 문제로 손해사정 상담을 찾으신다면, ${brand}에서 사고 자료와 객관적 기준을 바탕으로 세밀하게 검토해 드립니다.`;
+    const pcHeroTitle = `<span class="text-white">${matchedRegion}</span> <span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${appendCounselingSuffix(service, " 상담")}</span><span class="text-white">,</span><br /><span class="text-white">보험사 제시금 그대로 서명하기 전 확인하세요</span>`;
 
-    return { type, heroTitle, heroSubtitle, ctaText, metaTitle, metaDesc };
+    return { type, heroTitle, heroSubtitle, ctaText, metaTitle, metaDesc, pcHeroTitle };
   }
   
   let heroTitle = "";
@@ -216,7 +218,9 @@ export const getDKIContent = (keyword: string, type: DKIType): DKIContent => {
     ? metaTitle.replace(` - ${brand}`, ` | 변호사 협업까지 한번에! - ${brand}`)
     : `${metaTitle} | 변호사 협업까지 한번에!`;
 
-  return { type, heroTitle, heroSubtitle, ctaText, metaTitle: updatedMetaTitle, metaDesc };
+  const pcHeroTitle = `<span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${appendCounselingSuffix(k, " 상담")}</span><span class="text-white">,</span><br /><span class="text-white">보험사 제시금 그대로 서명하기 전 확인하세요</span>`;
+
+  return { type, heroTitle, heroSubtitle, ctaText, metaTitle: updatedMetaTitle, metaDesc, pcHeroTitle };
 };
 
 export const getProblemSituationsByTheme = (type: DKIType) => {

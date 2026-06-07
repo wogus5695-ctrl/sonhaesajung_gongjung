@@ -100,7 +100,8 @@ export default function MainPageContent({ k }: { k?: string }) {
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-brand-deep/80 via-brand-deep/60 to-transparent" />
         
-        <div className="section-container relative z-10">
+        {/* Mobile Hero Content - Completely Untouched layout & texts */}
+        <div className="section-container relative z-10 block md:hidden">
           <div className="max-w-4xl animate-fade-up">
             <div className="mb-6">
               <span className="inline-block bg-brand-gold text-white px-6 py-2.5 rounded-full font-black tracking-widest text-lg md:text-2xl shadow-lg shadow-brand-gold/20">
@@ -144,6 +145,63 @@ export default function MainPageContent({ k }: { k?: string }) {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {["손해사정사X변호사 공동조력", "의학자료 정밀 분석", hasKeyword ? `${keyword} 판례 기반 검토` : "판례 기반 검토", "변호사 상담 연계 지원"].map((item, idx) => (
                 <div key={idx} className="flex items-center gap-2 text-white/80 font-medium text-sm md:text-base">
+                  <ShieldCheck className="w-5 h-5 text-brand-gold" />
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* PC Hero Content - Optimized layout & text */}
+        <div className="section-container relative z-10 hidden md:block">
+          <div className="max-w-4xl animate-fade-up">
+            <div className="mb-6">
+              <span className="inline-block bg-brand-gold text-white px-6 py-2.5 rounded-full font-black tracking-widest text-lg md:text-2xl shadow-lg shadow-brand-gold/20">
+                손해사정부터 변호사 협업까지 한 번에
+              </span>
+            </div>
+            <h1 className="text-[1.65rem] sm:text-3xl md:text-5xl lg:text-6xl font-black mb-14 break-keep text-white leading-tight">
+              {hasKeyword ? (
+                <>
+                  <span 
+                    className="block leading-tight"
+                    dangerouslySetInnerHTML={{ __html: dki.pcHeroTitle }}
+                  />
+                </>
+              ) : (
+                <>
+                  <span className="block mb-4 text-white">
+                    <span className="text-brand-gold">손해사정사</span>와 <span className="text-brand-gold">변호사</span> 협업 상담,
+                  </span>
+                  <span className="block text-white leading-tight">
+                    보험사 제시금 그대로 서명하기 전 확인하세요
+                  </span>
+                </>
+              )}
+            </h1>
+            <p className="text-lg md:text-2xl text-white/70 mb-12 leading-loose max-w-3xl whitespace-pre-line">
+              교통사고 합의금, 산재 불승인, 보험금 부지급은 사고자료·의무기록·약관 해석에 따라 결과가 달라질 수 있습니다.{"\n"}
+              공정손해사정은 손해사정사 검토와 변호사 협업을 통해 보상 쟁점을 먼저 확인합니다.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 mb-16">
+              <a href="#contact" className="btn-primary text-xl px-10 py-5 text-center shadow-2xl shadow-brand-gold/20 active:scale-95 transition-transform">
+                무료 검토 신청
+              </a>
+              <a href="tel:010-4875-4972" className="flex items-center justify-center gap-3 bg-white/10 backdrop-blur-md text-white border border-white/20 px-10 py-5 rounded-xl font-bold text-xl hover:bg-white/20 active:scale-95 transition-all">
+                <Phone className="w-6 h-6" /> 지금 전화 상담
+              </a>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {[
+                "손해사정사·변호사 공동조력", 
+                "의학자료 정밀 분석", 
+                hasKeyword ? `${keyword.replace(/상담$/, '').trim()} 판례 검토` : "판례 기반 검토", 
+                "변호사 협업 연계 지원"
+              ].map((item, idx) => (
+                <div key={idx} className="flex items-center gap-2 text-white/80 font-medium text-[15px] lg:text-base">
                   <ShieldCheck className="w-5 h-5 text-brand-gold" />
                   {item}
                 </div>
