@@ -30,8 +30,12 @@ export default function ContactForm({ keyword }: { keyword?: string }) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.phone || !formData.content) {
-      alert('성함, 연락처, 문의내용은 필수 입력 사항입니다.');
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const finalContent = isMobile && !formData.content ? '모바일 간편 신청 (유선 상담 희망)' : formData.content;
+    const finalStatus = isMobile && !formData.status ? '합의 전 (모바일 간편)' : formData.status;
+
+    if (!formData.name || !formData.phone || (!isMobile && !finalContent)) {
+      alert(isMobile ? '성함과 연락처는 필수 입력 사항입니다.' : '성함, 연락처, 문의내용은 필수 입력 사항입니다.');
       return;
     }
 
@@ -45,6 +49,8 @@ export default function ContactForm({ keyword }: { keyword?: string }) {
     // 전송 데이터 구성
     const submissionData = {
       ...formData,
+      content: finalContent,
+      status: finalStatus,
       currentKeyword,
       submittedAt: new Date().toLocaleString('ko-KR'),
     };
@@ -142,7 +148,7 @@ export default function ContactForm({ keyword }: { keyword?: string }) {
         </div>
       </div>
 
-      <div>
+      <div className="hidden md:block">
         <label className="block text-sm font-bold text-brand-primary mb-2">현재 진행상태</label>
         <select 
           name="status"
@@ -160,7 +166,7 @@ export default function ContactForm({ keyword }: { keyword?: string }) {
         </select>
       </div>
 
-      <div>
+      <div className="hidden md:block">
         <label className="block text-sm font-bold text-brand-primary mb-2">문의내용 (병원 정보 필수*)</label>
         <textarea 
           name="content"
@@ -168,7 +174,6 @@ export default function ContactForm({ keyword }: { keyword?: string }) {
           onChange={handleChange}
           rows={4}
           placeholder="현재 입원 중이신 병원 정보와 검토가 필요한 내용을 상세히 남겨 주시면 더 정확한 상담이 가능합니다."
-          required
           className="w-full px-5 py-4 bg-white border border-brand-line rounded-xl focus:outline-none focus:border-brand-gold transition-colors resize-none"
         ></textarea>
       </div>

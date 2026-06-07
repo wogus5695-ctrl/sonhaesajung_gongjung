@@ -153,10 +153,24 @@ export default function CaseSection({ keyword }: { keyword?: string }) {
                     {item.direction}
                   </p>
                 </div>
+
+                {/* Mini CTA inside card */}
+                <div className="mt-6 pt-5 border-t border-brand-line/30 flex items-center justify-between">
+                  <span className="text-xs text-brand-muted font-bold">유사한 상황이신가요?</span>
+                  <a href="#contact" className="inline-flex items-center gap-1 text-xs font-black text-brand-gold hover:underline">
+                    무료 검토 받기 <ChevronRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
               </div>
 
             </div>
           ))}
+        </div>
+
+        {/* Mobile Swipe Cue */}
+        <div className="flex items-center justify-center gap-2 mt-2 mb-6 md:hidden text-white/50 text-xs font-medium">
+          <span>옆으로 넘겨보세요</span>
+          <ArrowRight className="w-3.5 h-3.5 animate-pulse" />
         </div>
 
         <p className="mt-8 text-[11px] text-white/30 leading-relaxed text-center break-keep max-w-4xl mx-auto">

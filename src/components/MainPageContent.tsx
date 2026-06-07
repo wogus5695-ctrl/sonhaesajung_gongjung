@@ -303,15 +303,15 @@ export default function MainPageContent({ k }: { k?: string }) {
       <section id="traffic" className="section-py bg-brand-ivory">
         <div className="section-container">
           <SectionTitle title="전문 분야별 핵심 검토 서비스" sub="보험사 출신 등 실무 경험을 바탕으로 사건의 핵심 쟁점을 파악합니다." />
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid lg:grid-cols-3 gap-4 lg:gap-8">
             {mainServices.map((service, idx) => (
               <div key={idx} className="bg-white rounded-3xl overflow-hidden border border-brand-line shadow-sm hover:shadow-xl transition-all group flex flex-col">
-                <div className="p-8 md:p-10 flex-1">
-                  <span className="inline-block px-3 py-1 bg-brand-gold/10 text-brand-gold text-xs font-bold rounded-full mb-4">{service.tag}</span>
-                  <h3 className="text-2xl font-black mb-6">{service.title}</h3>
-                  <p className="text-brand-muted mb-8 leading-relaxed break-keep">{service.desc}</p>
+                <div className="p-6 md:p-10 flex-1">
+                  <span className="inline-block px-3 py-1 bg-brand-gold/10 text-brand-gold text-xs font-bold rounded-full mb-3 md:mb-4">{service.tag}</span>
+                  <h3 className="text-2xl font-black mb-4 md:mb-6">{service.title}</h3>
+                  <p className="text-brand-muted text-sm md:text-base mb-6 md:mb-8 leading-relaxed break-keep">{service.desc}</p>
                   
-                  <div className="space-y-3 mb-10 bg-brand-ivory/50 p-6 rounded-2xl">
+                  <div className="space-y-2 mb-6 md:mb-10 bg-brand-ivory/50 p-5 md:p-6 rounded-2xl">
                     <p className="text-xs font-bold text-brand-gold uppercase tracking-widest mb-1">핵심 검토 쟁점</p>
                     {service.issues.map((issue, i) => (
                       <div key={i} className="flex items-center gap-2 text-sm font-bold text-brand-primary">
@@ -321,7 +321,7 @@ export default function MainPageContent({ k }: { k?: string }) {
                     ))}
                   </div>
                 </div>
-                <div className="p-8 pt-0">
+                <div className="p-6 pt-0 md:p-8 md:pt-0">
                   <a href="#contact" className="btn-primary w-full py-4 rounded-xl flex items-center justify-center gap-2">
                     {service.title} 상담 <ArrowRight className="w-4 h-4" />
                   </a>
@@ -339,8 +339,8 @@ export default function MainPageContent({ k }: { k?: string }) {
       {/* 5. Why Section */}
       <section className="section-py bg-white">
         <div className="section-container">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <div className="relative h-full min-h-[400px] lg:min-h-0 rounded-[3rem] overflow-hidden shadow-2xl">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-center">
+            <div className="relative h-52 md:h-80 lg:h-full min-h-0 rounded-[2rem] lg:rounded-[3rem] overflow-hidden shadow-2xl">
               <Image 
                 src="/analysis-desk.png" 
                 alt="전문가 자료 분석 이미지" 
@@ -353,7 +353,7 @@ export default function MainPageContent({ k }: { k?: string }) {
               <SectionTitle 
                 title="보험사가 알려주지 않는 보상의 이면을 분석합니다" 
               />
-              <div className="space-y-6">
+              <div className="space-y-4 md:space-y-6">
                 {[
                   { 
                     icon: FileSearch, 
@@ -373,14 +373,14 @@ export default function MainPageContent({ k }: { k?: string }) {
                 ].map((item, idx) => (
                   <div 
                     key={idx} 
-                    className="group bg-slate-50 border border-slate-100 rounded-2xl p-6 flex gap-6 items-start transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-primary/5 hover:border-brand-gold/30"
+                    className="group bg-slate-50 border border-slate-100 rounded-2xl p-5 md:p-6 flex gap-4 md:gap-6 items-start transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-primary/5 hover:border-brand-gold/30"
                   >
-                    <div className="w-14 h-14 bg-white shadow-sm border border-slate-100 text-brand-gold rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-brand-gold group-hover:text-white transition-colors duration-300">
-                      <item.icon className="w-7 h-7" />
+                    <div className="w-12 h-12 md:w-14 md:h-14 bg-white shadow-sm border border-slate-100 text-brand-gold rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-brand-gold group-hover:text-white transition-colors duration-300">
+                      <item.icon className="w-6 h-6 md:w-7 md:h-7" />
                     </div>
-                    <div className="flex-1 pt-1">
-                      <h4 className="text-xl font-bold mb-3 text-brand-primary">{item.title}</h4>
-                      <p className="text-brand-muted leading-relaxed break-keep text-[15px]">{item.desc}</p>
+                    <div className="flex-1 pt-0.5">
+                      <h4 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-brand-primary">{item.title}</h4>
+                      <p className="text-brand-muted leading-relaxed break-keep text-[14px] md:text-[15px]">{item.desc}</p>
                     </div>
                   </div>
                 ))}
