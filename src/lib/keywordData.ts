@@ -97,6 +97,7 @@ export const keywordItems: KeywordItem[] = [
   createKeyword("오토바이 사고 합의금", "교통사고 합의 전후", "오토바이 합의금"),
   createKeyword("오토바이 사고 손해배상", "교통사고 합의 전후", "오토바이 배상"),
   createKeyword("12대 중과실 교통사고 합의금", "교통사고 합의 전후", "중과실 사고"),
+  createKeyword("12대 중과실 합의금", "교통사고 합의 전후", "중과실 합의금"),
 
   // [보험금 부지급 대응]
   createKeyword("보험금 부지급", "보험금 부지급 대응", "부지급 대응"),
@@ -141,6 +142,7 @@ export const keywordItems: KeywordItem[] = [
   createKeyword("암보험금 부지급", "암·진단비 보험금", "암보험금"),
   createKeyword("암보험금 거절", "암·진단비 보험금", "암보험 거절"),
   createKeyword("암진단비 거절", "암·진단비 보험금", "진단비 거절"),
+  createKeyword("암진단비 손해사정사", "암·진단비 보험금", "진단비 전문"),
   createKeyword("암진단비 부지급", "암·진단비 보험금", "진단비 부지급"),
   createKeyword("뇌혈관 진단비 보험금", "암·진단비 보험금", "뇌혈관 질환"),
   createKeyword("심혈관 진단비 보험금", "암·진단비 보험금", "심혈관 질환"),
@@ -472,7 +474,11 @@ export const basicServices = [
   "후유장해 보험금",
   "산재 불승인",
   "산재 장해등급",
-  "12대 중과실"
+  "12대 중과실",
+  "보험금 지급 거절",
+  "암진단비 거절",
+  "암진단비 손해사정사",
+  "12대 중과실 합의금"
 ];
 
 export const specializedRegions = [

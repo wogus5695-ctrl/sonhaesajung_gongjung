@@ -101,7 +101,7 @@ export const getDKIContent = (keyword: string, type: DKIType): DKIContent => {
       heroTitle = `<span class="text-white">${matchedRegion}</span> <span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${service}</span> <span class="text-white">${suffix}</span>`;
     } else if (service.includes("합의금") || service.includes("손해사정사")) {
       heroTitle = `<span class="text-white">${matchedRegion}</span> <span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${service}</span> <span class="text-white">검토가 필요하신가요?</span>`;
-    } else if (service.includes("불승인") || service.includes("부지급") || service.includes("장해등급") || service.includes("보험금") || service.includes("치료 종결") || service.includes("직업병") || service.includes("폐암") || service.includes("장해진단서")) {
+    } else if (service.includes("불승인") || service.includes("부지급") || service.includes("거절") || service.includes("장해등급") || service.includes("보험금") || service.includes("치료 종결") || service.includes("직업병") || service.includes("폐암") || service.includes("장해진단서")) {
       heroTitle = `<span class="text-white">${matchedRegion}</span> <span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${service}</span> <span class="text-white">관련 검토가 필요하신가요?</span>`;
     } else {
       heroTitle = `<span class="text-white">${matchedRegion}</span> <span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${service}</span> <span class="text-white">검토가 필요하신가요?</span>`;
@@ -190,7 +190,13 @@ export const getDKIContent = (keyword: string, type: DKIType): DKIContent => {
       metaDesc = `${k} 관련 고지의무 위반 사유가 정당한지, 보험금 지급과의 인과관계를 의무기록 기준으로 분석합니다.`;
       break;
     case "cancer":
-      heroTitle = `<span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${k}</span> <span class="text-white"> 지급 여부를 확인하고 계신가요?</span>`;
+      if (k.includes("손해사정사")) {
+        heroTitle = `<span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${k}</span> <span class="text-white">를 찾고 계신가요?</span>`;
+      } else if (k.includes("거절") || k.includes("부지급")) {
+        heroTitle = `<span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${k}</span> <span class="text-white"> 대응 방안이 필요하신가요?</span>`;
+      } else {
+        heroTitle = `<span class="text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">${k}</span> <span class="text-white"> 지급 여부를 확인하고 계신가요?</span>`;
+      }
       heroSubtitle = `<strong class="font-bold text-white">손해사정사</strong>의 의학자료 분석과 <strong class="font-bold text-white">협업 변호사</strong>의 법률 검토로, 진단명 및 병리결과에 따른 <strong class="text-white underline decoration-brand-gold decoration-2 underline-offset-8 font-bold">정당한 암 진단비 지급 여부</strong>를 확인합니다.`;
       ctaText = "진단비 보험금 검토 신청";
       metaTitle = `${k} 암·진단비 보험금 검토 - ${brand}`;
