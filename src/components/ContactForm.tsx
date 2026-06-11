@@ -144,6 +144,7 @@ export default function ContactForm({ keyword }: { keyword?: string }) {
             <option value="교통사고">교통사고</option>
             <option value="산재 사고">산재 사고</option>
             <option value="보험금 분쟁">보험금 분쟁</option>
+            <option value="암 보험금">암 보험금</option>
             <option value="기타">기타</option>
           </select>
         </div>
